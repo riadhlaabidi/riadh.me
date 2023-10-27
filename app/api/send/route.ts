@@ -55,9 +55,9 @@ export async function POST(request: NextRequest) {
               <br>
               <small><strong>isBot:</strong> ${ua.isBot}</small>
               <br>
-              <small><strong>IP Address:</strong> ${request.headers.get(
-                "x-forwarded-for"
-              )}</small>
+              <small><strong>IP Address:</strong> ${
+                request.ip
+              } ${request.headers.get("x-forwarded-for")}</small>
               <br>
               <small><strong>Country:</strong> ${request.geo?.country}</small>
               <br>
