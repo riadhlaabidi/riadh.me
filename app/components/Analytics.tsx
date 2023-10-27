@@ -1,6 +1,6 @@
 import Script from "next/script";
 
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_MEASUREMENT_ID;
+const GA_MEASUREMENT_ID = process.env.NEXT_GA_MEASUREMENT_ID;
 
 export default function Analytics() {
   return (
