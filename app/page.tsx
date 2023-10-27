@@ -26,7 +26,7 @@ export default function Home() {
       </div>
       <div className="flex flex-col lg:flex-row mt-14 gap-3">
         <Link
-          href="/resume-riadh-laabidi.pdf"
+          href="/files/resume-riadh-laabidi.pdf"
           className="px-12 py-[10px] font-normal uppercase rounded-full bg-zinc-300 text-black border border-zinc-300 hover:bg-transparent hover:text-zinc-300"
         >
           Download resume
