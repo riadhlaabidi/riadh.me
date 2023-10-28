@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
   const ua = userAgent(request);
 
   try {
-    const res = await transport.sendMail({
+    await transport.sendMail({
       to: "riadh.by.laabidi@gmail.com",
       from: "contact@riadh.me",
       subject: "New contact request from your portfolio!",
@@ -55,9 +55,9 @@ export async function POST(request: NextRequest) {
               <br>
               <small><strong>isBot:</strong> ${ua.isBot}</small>
               <br>
-              <small><strong>IP Address:</strong> ${
-                request.ip
-              } ${request.headers.get("x-forwarded-for")}</small>
+              <small><strong>IP Address:</strong>${request.headers.get(
+                "x-forwarded-for"
+              )} ${request.headers.get("x-real-ip")}</small>
               <br>
               <small><strong>Country:</strong> ${request.geo?.country}</small>
               <br>
@@ -68,8 +68,6 @@ export async function POST(request: NextRequest) {
       </body>
       </html>`,
     });
-
-    console.log(res);
 
     return NextResponse.json(
       { message: "Email is sent successfully" },

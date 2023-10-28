@@ -2,11 +2,6 @@
 
 import { ChangeEvent, ChangeEventHandler, FormEvent, useState } from "react";
 
-// export const metadata: Metadata = {
-//   title: "Contact",
-//   description: "Riadh Laabidi's contact page",
-// };
-
 function TextInput({
   name,
   id,
@@ -106,7 +101,7 @@ export default function Contact() {
   };
 
   return (
-    <section>
+    <>
       <h1 className="text-4xl text-normal">
         Let&apos;s Work <span className="text-primary-green">Together!</span>
       </h1>
@@ -260,6 +255,6 @@ export default function Contact() {
           )}
         </div>
       </form>
-    </section>
+    </>
   );
 }

@@ -53,14 +53,16 @@ const Twitter = () => {
 };
 
 export default function SocialIcon({
+  id,
   name,
   href,
 }: {
+  id: string;
   href: string;
   name: string;
 }) {
   return (
-    <Link href={href} target="_blank" referrerPolicy="no-referrer">
+    <Link id={id} href={href} target="_blank" rel="noreferer noopener nofollow">
       {name === "linkedin" && <Linkedin />}
       {name === "github" && <Github />}
       {name === "twitter" && <Twitter />}

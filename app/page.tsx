@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import SocialIcon from "./components/SocialIcon";
+import { Metadata } from "next";
 
 export default function Home() {
   return (
@@ -26,7 +27,9 @@ export default function Home() {
       </div>
       <div className="flex flex-col lg:flex-row mt-14 gap-3">
         <Link
+          id="download-resume"
           href="/files/resume-riadh-laabidi.pdf"
+          prefetch={false}
           className="px-12 py-[10px] font-normal uppercase rounded-full bg-zinc-300 text-black border border-zinc-300 hover:bg-transparent hover:text-zinc-300"
         >
           Download resume
@@ -39,12 +42,21 @@ export default function Home() {
         </Link>
       </div>
       <div className="flex gap-4 mt-10">
-        <SocialIcon href="https://github.com/riadhlaabidi" name="github" />
         <SocialIcon
+          id="social-github"
+          href="https://github.com/riadhlaabidi"
+          name="github"
+        />
+        <SocialIcon
+          id="social-linkedin"
           href="https://www.linkedin.com/in/riadhlaabidi/"
           name="linkedin"
         />
-        <SocialIcon href="https://twitter.com/riadh__laabidi" name="twitter" />
+        <SocialIcon
+          id="social-twitter"
+          href="https://twitter.com/riadh__laabidi"
+          name="twitter"
+        />
       </div>
     </section>
   );

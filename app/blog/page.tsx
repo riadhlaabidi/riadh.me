@@ -1,4 +1,14 @@
+import { Metadata } from "next";
 import Header from "../components/Header";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description: "Riadh Laabidi's Blog",
+  openGraph: {
+    title: "Blog | Riadh Laabidi",
+    description: "Checkout latest blog posts published by Riadh Laabidi",
+  },
+};
 
 export default function Blog() {
   return (

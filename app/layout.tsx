@@ -2,8 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Footer from "./components/Footer";
-import Analytics from "./components/Analytics";
 import Header from "./components/Header";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 // If loading a variable font, you don't need to specify the font weight
 const inter = Inter({
@@ -11,13 +11,15 @@ const inter = Inter({
   display: "swap",
 });
 
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID!;
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://riadh.me"),
   title: {
     default: "Riadh Laabidi",
     template: "%s | Riadh Laabidi",
   },
-  description: "Riadh Laabidi's portfolio",
+  description: "Riadh Laabidi's portfolio homepage",
   openGraph: {
     title: "Riadh Laabidi",
     description: "Fullstack web developer",
@@ -50,10 +52,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <Analytics />
-      </head>
       <body className={inter.className + " font-light text-white"}>
+        <GoogleTagManager gtmId={GTM_ID} />
         <Header />
         <main className="w-full md:w-2/3 m-auto flex min-h-screen flex-col justify-between px-10 mt-20 mb-20 lg:mb-0">
           {children}
