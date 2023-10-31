@@ -1,15 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { GoogleTagManager } from "@next/third-parties/google";
-
-// If loading a variable font, you don't need to specify the font weight
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-});
+import { GeistSans } from "geist/font";
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID!;
 
@@ -52,10 +46,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className + " font-light text-white"}>
+      <body className={GeistSans.className + " font-light text-white"}>
         <GoogleTagManager gtmId={GTM_ID} />
         <Header />
-        <main className="w-full md:w-2/3 m-auto flex min-h-screen flex-col justify-between px-10 mt-20 mb-20 lg:mb-0">
+        <main className="w-full lg:w-4/5 m-auto flex min-h-screen flex-col justify-between px-10 mt-20 mb-20 lg:mb-0">
           {children}
         </main>
         <Footer />

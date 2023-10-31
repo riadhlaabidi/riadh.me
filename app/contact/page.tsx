@@ -102,7 +102,7 @@ export default function Contact() {
 
   return (
     <>
-      <h1 className="text-4xl text-normal">
+      <h1 className="text-4xl font-bold">
         Let&apos;s Work <span className="text-primary-green">Together!</span>
       </h1>
       <div className="flex flex-col my-12 border-zinc-700 text-lg ">
@@ -152,7 +152,7 @@ export default function Contact() {
           <span>Tunisia</span>
         </p>
       </div>
-      <form onSubmit={handleSendMessage} className="w-full mt-6">
+      <form onSubmit={handleSendMessage} className="w-full mt-6 lg:w-2/3">
         <div className="flex flex-col md:flex-row md:gap-4">
           <div className="w-full md:w-1/2">
             <InputLabel forId="firstname" label="First Name" required />
@@ -207,7 +207,7 @@ export default function Contact() {
             }
           ></textarea>
         </div>
-        <div className="flex flex-wrap justify-end items-center mt-6 gap-4">
+        <div className="flex flex-wrap justify-end items-center mt-8 gap-4">
           {isSent && (
             <p className="text-primary-green">
               &#10003; Thanks for reaching out. I&apos;ll respond shortly.

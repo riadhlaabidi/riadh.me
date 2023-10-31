@@ -5,7 +5,7 @@ import { Metadata } from "next";
 
 export default function Home() {
   return (
-    <section className="flex flex-col items-center mt-4 w-full mx-auto p-0 ">
+    <section className="flex flex-col items-center w-full mx-auto p-0 ">
       <div className="flex flex-col items-center">
         <Image
           className="rounded-full"
@@ -15,7 +15,7 @@ export default function Home() {
           width={110}
           height={110}
         />
-        <h1 className="text-4xl leading-snug mt-8 md:text-6xl lg:text-large text-center ">
+        <h1 className="text-4xl leading-tight mt-8 md:text-6xl lg:text-large text-center ">
           Hello, I&apos;m <br />
           Riadh Laabidi
         </h1>
@@ -25,7 +25,7 @@ export default function Home() {
           an open source enthusiast.
         </p>
       </div>
-      <div className="flex flex-col lg:flex-row mt-14 gap-3">
+      <div className="flex flex-col lg:flex-row mt-9 gap-3">
         <Link
           id="download-resume"
           href="/files/resume-riadh-laabidi.pdf"
