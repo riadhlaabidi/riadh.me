@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function Blog() {
   return (
     <section>
-      <h1 className="text-4xl">Blog</h1>
+      <h1 className="text-4xl font-bold">Blog</h1>
 
       <div className="border rounded-lg mt-20 p-16 border-zinc-700">
         <p className="font-extralight text-xl text-zinc-500">
