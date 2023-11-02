@@ -10,8 +10,7 @@
     "lint:fix": "npm run lint -- --fix",
     "prepare": "husky install",
     "prettier:check": "prettier --check .",
-    "prettier:format": "prettier --write .",
-    "lint-staged": "lint-staged"
+    "prettier:format": "prettier --write ."
   },
   "dependencies": {
     "@next/third-parties": "^14.0.0",
@@ -37,5 +36,9 @@
     "prettier-plugin-tailwindcss": "^0.5.6",
     "tailwindcss": "^3",
     "typescript": "^5"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": "eslint --cache --fix",
+    "*": "prettier --write"
   }
 }
