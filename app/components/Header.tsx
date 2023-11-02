@@ -1,30 +1,28 @@
-"use client";
-import Link from "next/link";
-import Image from "next/image";
-import { useState } from "react";
-import Divider from "./Divider";
+'use client'
+import Link from 'next/link'
+import { useState } from 'react'
 
 const navItems = [
-  { path: "/", name: "Home" },
-  { path: "/projects", name: "Projects" },
-  { path: "/contact", name: "Contact" },
-  { path: "/blog", name: "Blog" },
-];
+  { path: '/', name: 'Home' },
+  { path: '/projects', name: 'Projects' },
+  { path: '/contact', name: 'Contact' },
+  { path: '/blog', name: 'Blog' },
+]
 
 export function NavLink() {
-  return <Link href={"/"}>Home</Link>;
+  return <Link href={'/'}>Home</Link>
 }
 
 export default function Header() {
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(true)
 
   return (
-    <header className="sticky top-0 ">
-      <nav className="py-7 backdrop-blur-lg">
-        <div className="mx-auto flex px-6 lg:w-4/5 lg:px-10 justify-between">
+    <header className="sticky top-0">
+      <nav className="py-5 lg:py-7 lg:backdrop-blur-lg">
+        <div className="mx-auto flex justify-end px-5 lg:w-4/5 lg:justify-between lg:px-10">
           {isCollapsed && (
             <div className="flex lg:flex-1">
-              <Link href={"/"} className="-m-1.5 p-1.5">
+              <Link href={'/'} className="-m-1.5 hidden p-1.5 lg:flex">
                 <span className="sr-only">Riadh Laabidi</span>
                 <svg
                   width="24"
@@ -68,12 +66,12 @@ export default function Header() {
           <div className="flex lg:hidden">
             <button
               type="button"
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md bg-zinc-600/20 p-2.5 text-gray-700 backdrop-blur-sm"
               onClick={() => setIsCollapsed(false)}
             >
               <span className="sr-only">Open main menu</span>
               <svg
-                stroke={isCollapsed ? "#fff" : ""}
+                stroke={isCollapsed ? '#fff' : ''}
                 width={24}
                 height={24}
                 fill="none"
@@ -89,7 +87,7 @@ export default function Header() {
               </svg>
             </button>
           </div>
-          <ul className="hidden lg:flex gap-6">
+          <ul className="hidden gap-6 lg:flex">
             {navItems.map((item, index) => (
               <li key={item.name + index}>
                 <Link
@@ -106,12 +104,17 @@ export default function Header() {
 
       {!isCollapsed && (
         <div className="lg:hidden" role="dialog" aria-modal="true">
-          <div className="fixed inset-0 z-51"></div>
-          <div className="fixed inset-y-0 right-0 z-51 w-full overflow-y-auto bg-zinc-850 backdrop-blur-xl px-6 py-7 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 rounded-2xl">
+          <div className="z-51 fixed inset-0"></div>
+          <div className="z-51 bg-zinc-850 fixed inset-y-0 right-0 w-full overflow-y-hidden rounded-2xl bg-zinc-700/40 px-5 py-5 backdrop-blur-xl sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
-              <Link href={"/"} className="-m-1.5 p-1.5">
+              <Link
+                href={'/'}
+                className="-m-1.5 p-1.5"
+                onClick={() => setIsCollapsed(true)}
+              >
                 <span className="sr-only">Riadh Laabidi</span>
                 <svg
+                  className=""
                   width="24"
                   height="24"
                   viewBox="0 0 48 48"
@@ -193,7 +196,7 @@ export default function Header() {
           </div>
         </div>
       )}
-      <div className="h-px bg-zinc-700/40 w-full " />
+      <div className="hidden h-px w-full bg-zinc-700/40 lg:block" />
     </header>
-  );
+  )
 }

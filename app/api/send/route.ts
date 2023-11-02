@@ -1,5 +1,5 @@
-import { NextResponse, type NextRequest, userAgent } from "next/server";
-import nodemailer from "nodemailer";
+import { NextResponse, type NextRequest, userAgent } from 'next/server'
+import nodemailer from 'nodemailer'
 
 const transport = nodemailer.createTransport({
   host: process.env.NEXT_TRANSPORT_HOST,
@@ -8,17 +8,17 @@ const transport = nodemailer.createTransport({
     user: process.env.NEXT_TRANSPORT_USERNAME,
     pass: process.env.NEXT_TRANSPORT_PASSWORD,
   },
-});
+})
 
 export async function POST(request: NextRequest) {
-  const { firstname, lastname, email, message } = await request.json();
-  const ua = userAgent(request);
+  const { firstname, lastname, email, message } = await request.json()
+  const ua = userAgent(request)
 
   try {
     await transport.sendMail({
-      to: "riadh.by.laabidi@gmail.com",
-      from: "contact@riadh.me",
-      subject: "New contact request from your portfolio!",
+      to: 'riadh.by.laabidi@gmail.com',
+      from: 'contact@riadh.me',
+      subject: 'New contact request from your portfolio!',
       html: `<!DOCTYPE html>
       <html lang="en">
       <head>
@@ -35,13 +35,9 @@ export async function POST(request: NextRequest) {
               <h3>Message:</h3>
               <p>${message}</p>
               <hr style="margin-top:100px;">
-              <small><strong>Browser:</strong> ${ua.browser.name} ${
-        ua.browser.version
-      }</small>
+              <small><strong>Browser:</strong> ${ua.browser.name} ${ua.browser.version}</small>
               <br>
-              <small><strong>Device:</strong> ${ua.device.model} ${
-        ua.device.type
-      } ${ua.device.vendor}</small>
+              <small><strong>Device:</strong> ${ua.device.model} ${ua.device.type} ${ua.device.vendor}</small>
               <br>
               <small><strong>User agent:</strong> ${ua.ua}</small>
               <br>
@@ -49,15 +45,9 @@ export async function POST(request: NextRequest) {
               <br>
               <small><strong>CPU:</strong> ${ua.cpu.architecture}</small>
               <br>
-              <small><strong>Engine:</strong> ${ua.engine.name} ${
-        ua.engine.version
-      }</small>
+              <small><strong>Engine:</strong> ${ua.engine.name} ${ua.engine.version}</small>
               <br>
               <small><strong>isBot:</strong> ${ua.isBot}</small>
-              <br>
-              <small><strong>IP Address:</strong>${request.headers.get(
-                "x-forwarded-for"
-              )} ${request.headers.get("x-real-ip")}</small>
               <br>
               <small><strong>Country:</strong> ${request.geo?.country}</small>
               <br>
@@ -67,16 +57,16 @@ export async function POST(request: NextRequest) {
           </div>
       </body>
       </html>`,
-    });
+    })
 
     return NextResponse.json(
-      { message: "Email is sent successfully" },
-      { status: 200 }
-    );
+      { message: 'Email is sent successfully' },
+      { status: 200 },
+    )
   } catch (error) {
     return NextResponse.json(
-      { message: "Failed to send email" },
-      { status: 500 }
-    );
+      { message: 'Failed to send email' },
+      { status: 500 },
+    )
   }
 }
