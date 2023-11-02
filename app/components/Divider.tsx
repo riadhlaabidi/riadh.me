@@ -1,3 +1,3 @@
 export default function Divider() {
-  return <div className="h-px bg-zinc-700 w-full" />;
+  return <div className="h-px w-full bg-zinc-700" />
 }

@@ -1,18 +1,18 @@
-import { Metadata } from "next";
+import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: 'Contact',
   description: "Riadh Laabidi's portfolio contact page",
   openGraph: {
-    title: "Contact | Riadh Laabidi",
+    title: 'Contact | Riadh Laabidi',
     description: "Reach out to me and let's work together",
   },
-};
+}
 
 export default function ContactLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
-  return <section>{children}</section>;
+  return <section>{children}</section>
 }

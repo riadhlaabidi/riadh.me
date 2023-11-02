@@ -1,6 +1,6 @@
-"use client";
+'use client'
 
-import { ChangeEvent, ChangeEventHandler, FormEvent, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, FormEvent, useState } from 'react'
 
 function TextInput({
   name,
@@ -9,11 +9,11 @@ function TextInput({
   type,
   onChange,
 }: {
-  name: string;
-  id: string;
-  value: string;
-  type: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
+  name: string
+  id: string
+  value: string
+  type: string
+  onChange: ChangeEventHandler<HTMLInputElement>
 }) {
   return (
     <input
@@ -21,11 +21,11 @@ function TextInput({
       name={name}
       id={id}
       value={value}
-      className="mt-3 block w-full bg-transparent text-zinc-200 px-2 py-3 border border-zinc-500 rounded  focus:outline-none"
+      className="mt-3 block w-full rounded border border-zinc-500 bg-transparent px-2 py-3 text-zinc-200  focus:outline-none"
       onChange={onChange}
       required
     />
-  );
+  )
 }
 
 function InputLabel({
@@ -33,79 +33,79 @@ function InputLabel({
   label,
   required,
 }: {
-  forId: string;
-  label: string;
-  required: boolean;
+  forId: string
+  label: string
+  required: boolean
 }) {
   return (
     <div>
       <label htmlFor={forId}>{label}</label>
-      {required && <span className="text-xs text-red-700 ml-1">&#42;</span>}
+      {required && <span className="ml-1 text-xs text-red-700">&#42;</span>}
     </div>
-  );
+  )
 }
 
 export default function Contact() {
-  const [firstname, setFirstname] = useState<string>("");
-  const [lastname, setLastname] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [message, setMessage] = useState<string>("");
+  const [firstname, setFirstname] = useState<string>('')
+  const [lastname, setLastname] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
+  const [message, setMessage] = useState<string>('')
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isSent, setIsSent] = useState<boolean>(false);
-  const [reachedLimit, setReachedLimit] = useState<boolean>(false);
-  const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isSent, setIsSent] = useState<boolean>(false)
+  const [reachedLimit, setReachedLimit] = useState<boolean>(false)
+  const [errors, setErrors] = useState([])
 
   const handleSendMessage = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
 
-    setIsLoading(true);
+    setIsLoading(true)
 
     try {
-      const res = await fetch("/api/send", {
+      const res = await fetch('/api/send', {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-        method: "POST",
+        method: 'POST',
         body: JSON.stringify({
           firstname: firstname,
           lastname: lastname,
           email: email,
           message: message,
         }),
-      });
+      })
 
       switch (res.status) {
         case 200: {
-          setIsSent(true);
-          setFirstname("");
-          setLastname("");
-          setEmail("");
-          setMessage("");
-          break;
+          setIsSent(true)
+          setFirstname('')
+          setLastname('')
+          setEmail('')
+          setMessage('')
+          break
         }
         case 400: {
-          const data = await res.json();
-          setErrors(data.errors);
+          const data = await res.json()
+          setErrors(data.errors)
         }
         case 429: {
-          setReachedLimit(true);
-          break;
+          setReachedLimit(true)
+          break
         }
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
     <>
       <h1 className="text-4xl font-bold">
         Let&apos;s Work <span className="text-primary-green">Together!</span>
       </h1>
-      <div className="flex flex-col my-12 border-zinc-700 text-lg ">
+      <div className="my-12 flex flex-col border-zinc-700 text-lg ">
         <p className="mt-1 flex items-center gap-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -152,7 +152,7 @@ export default function Contact() {
           <span>Tunisia</span>
         </p>
       </div>
-      <form onSubmit={handleSendMessage} className="w-full mt-6 lg:w-2/3">
+      <form onSubmit={handleSendMessage} className="mt-6 w-full lg:w-2/3">
         <div className="flex flex-col md:flex-row md:gap-4">
           <div className="w-full md:w-1/2">
             <InputLabel forId="firstname" label="First Name" required />
@@ -166,7 +166,7 @@ export default function Contact() {
               }
             />
           </div>
-          <div className="w-full md:w-1/2 mt-5 md:mt-0">
+          <div className="mt-5 w-full md:mt-0 md:w-1/2">
             <InputLabel forId="lastname" label="Last Name" required />
 
             <TextInput
@@ -196,7 +196,7 @@ export default function Contact() {
         <div className="mt-5">
           <InputLabel forId="message" label="Message" required />
           <textarea
-            className="w-full block mt-3 bg-transparent text-zinc-200 px-2 py-3 border border-zinc-500 rounded  focus:outline-none"
+            className="mt-3 block w-full rounded border border-zinc-500 bg-transparent px-2 py-3 text-zinc-200  focus:outline-none"
             rows={4}
             cols={60}
             id="message"
@@ -207,7 +207,7 @@ export default function Contact() {
             }
           ></textarea>
         </div>
-        <div className="flex flex-wrap justify-end items-center mt-8 gap-4">
+        <div className="mt-8 flex flex-wrap items-center justify-end gap-4">
           {isSent && (
             <p className="text-primary-green">
               &#10003; Thanks for reaching out. I&apos;ll respond shortly.
@@ -220,14 +220,14 @@ export default function Contact() {
           )}
           {!isSent && !reachedLimit && (
             <button
-              className="disabled:opacity-60 disabled:bg-transparent disabled:text-primary-green float-right  px-12 py-[10px] text-black font-normal rounded-full uppercase bg-primary-green border border-primary-green hover:text-primary-green hover:bg-transparent"
+              className="float-right rounded-full border border-primary-green  bg-primary-green px-12 py-[10px] font-normal uppercase text-black hover:bg-transparent hover:text-primary-green disabled:bg-transparent disabled:text-primary-green disabled:opacity-60"
               type="submit"
               disabled={isLoading}
             >
               {isLoading ? (
                 <span className="flex items-center">
                   <svg
-                    className="animate-spin mr-2"
+                    className="mr-2 animate-spin"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -235,26 +235,26 @@ export default function Contact() {
                     height={20}
                   >
                     <circle
-                      className="opacity-25 stroke-primary-green"
+                      className="stroke-primary-green opacity-25"
                       cx="12"
                       cy="12"
                       r="10"
                       strokeWidth="4"
                     ></circle>
                     <path
-                      className="opacity-75 fill-primary-green"
+                      className="fill-primary-green opacity-75"
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     ></path>
                   </svg>
                   Sending...
                 </span>
               ) : (
-                "Send message"
+                'Send message'
               )}
             </button>
           )}
         </div>
       </form>
     </>
-  );
+  )
 }

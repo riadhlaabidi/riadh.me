@@ -1,11 +1,11 @@
-import Image from "next/image";
-import Link from "next/link";
-import SocialIcon from "./components/SocialIcon";
-import { Metadata } from "next";
+import Image from 'next/image'
+import Link from 'next/link'
+import SocialIcon from './components/SocialIcon'
+import { Metadata } from 'next'
 
 export default function Home() {
   return (
-    <section className="flex flex-col items-center w-full mx-auto p-0 ">
+    <section className="mx-auto flex w-full flex-col items-center p-0 ">
       <div className="flex flex-col items-center">
         <Image
           className="rounded-full"
@@ -15,33 +15,33 @@ export default function Home() {
           width={110}
           height={110}
         />
-        <h1 className="text-4xl leading-tight mt-8 md:text-6xl lg:text-large text-center ">
+        <h1 className="mt-8 text-center text-4xl leading-tight md:text-6xl lg:text-large ">
           Hello, I&apos;m <br />
           Riadh Laabidi
         </h1>
-        <p className="text-base md:text-lg max-w-3xl mt-6 text-center text-secondary-gray">
+        <p className="mt-6 max-w-3xl text-center text-base text-secondary-gray md:text-lg">
           I&apos;m a fullstack developer, currently working on some interesting
           projects. I use Spring boot & Angular on a daily basis, and I&apos;m
           an open source enthusiast.
         </p>
       </div>
-      <div className="flex flex-col lg:flex-row mt-9 gap-3">
+      <div className="mt-9 flex flex-col gap-3 lg:flex-row">
         <Link
           id="download-resume"
           href="/files/resume-riadh-laabidi.pdf"
           prefetch={false}
-          className="px-12 py-[10px] font-normal uppercase rounded-full bg-zinc-300 text-black border border-zinc-300 hover:bg-transparent hover:text-zinc-300"
+          className="rounded-full border border-zinc-300 bg-zinc-300 px-12 py-[10px] font-normal uppercase text-black hover:bg-transparent hover:text-zinc-300"
         >
           Download resume
         </Link>
         <Link
           href="/contact"
-          className="px-12 py-[10px] text-center text-black font-normal rounded-full uppercase bg-primary-green border border-primary-green   hover:text-primary-green hover:bg-transparent"
+          className="rounded-full border border-primary-green bg-primary-green px-12 py-[10px] text-center font-normal uppercase text-black   hover:bg-transparent hover:text-primary-green"
         >
           Contact me
         </Link>
       </div>
-      <div className="flex gap-4 mt-10">
+      <div className="mt-10 flex gap-4">
         <SocialIcon
           id="social-github"
           href="https://github.com/riadhlaabidi"
@@ -59,5 +59,5 @@ export default function Home() {
         />
       </div>
     </section>
-  );
+  )
 }

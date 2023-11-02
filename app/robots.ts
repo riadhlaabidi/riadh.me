@@ -1,11 +1,11 @@
-import { MetadataRoute } from "next";
+import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
-      userAgent: "*",
+      userAgent: '*',
     },
-    sitemap: "https://riadh.me/sitemap.xml",
-    host: "https://riadh.me",
-  };
+    sitemap: 'https://riadh.me/sitemap.xml',
+    host: 'https://riadh.me',
+  }
 }
