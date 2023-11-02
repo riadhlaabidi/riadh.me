@@ -105,7 +105,7 @@ export default function Header() {
       {!isCollapsed && (
         <div className="lg:hidden" role="dialog" aria-modal="true">
           <div className="z-51 fixed inset-0"></div>
-          <div className="z-51 bg-zinc-850 fixed inset-y-0 right-0 w-full overflow-y-hidden rounded-2xl px-5 py-5 backdrop-blur-xl sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <div className="z-51 bg-zinc-850 fixed inset-y-0 right-0 w-full overflow-y-hidden rounded-2xl bg-zinc-700/40 px-5 py-5 backdrop-blur-xl sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <Link
                 href={'/'}
