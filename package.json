@@ -12,7 +12,11 @@
     "prettier:format": "prettier --write ."
   },
   "lint-staged": {
+<<<<<<< HEAD
     "*.{js,ts,tsx}": "eslint --fix",
+=======
+    "*.{js,ts,tsx}": "eslint --cache --fix",
+>>>>>>> 4af7d32 (Fix lint-staged)
     "*": "prettier --write"
   },
   "dependencies": {
