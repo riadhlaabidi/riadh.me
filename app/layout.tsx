@@ -49,7 +49,7 @@ export default function RootLayout({
       <body className={GeistSans.className + ' font-light text-white'}>
         <GoogleTagManager gtmId={GTM_ID} />
         <Header />
-        <main className="m-auto mb-20 mt-20 flex min-h-screen w-full flex-col justify-between px-5 lg:mb-0 lg:w-4/5 lg:px-10">
+        <main className="m-auto mb-20 mt-10 flex min-h-screen w-full flex-col justify-between px-5 lg:mb-0 lg:mt-20 lg:w-4/5 lg:px-10">
           {children}
         </main>
         <Footer />
