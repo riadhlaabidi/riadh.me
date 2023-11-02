@@ -7,5 +7,5 @@
 //     .join(' --file ')}`
 
 module.exports = {
-  '*.{js,jsx,ts,tsx}': ['prettier --write'],
+  '*.{js,jsx,ts,tsx}': ['prettier --write .'],
 }
