@@ -1,26 +1,26 @@
-import "./globals.css";
-import type { Metadata } from "next";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import { GoogleTagManager } from "@next/third-parties/google";
-import { GeistSans } from "geist/font";
+import './globals.css'
+import type { Metadata } from 'next'
+import Footer from './components/Footer'
+import Header from './components/Header'
+import { GoogleTagManager } from '@next/third-parties/google'
+import { GeistSans } from 'geist/font'
 
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID!;
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID!
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://riadh.me"),
+  metadataBase: new URL('https://riadh.me'),
   title: {
-    default: "Riadh Laabidi",
-    template: "%s | Riadh Laabidi",
+    default: 'Riadh Laabidi',
+    template: '%s | Riadh Laabidi',
   },
   description: "Riadh Laabidi's portfolio homepage",
   openGraph: {
-    title: "Riadh Laabidi",
-    description: "Fullstack web developer",
-    url: "https://riadh.me",
-    siteName: "Riadh Laabidi",
-    locale: "en_US",
-    type: "website",
+    title: 'Riadh Laabidi',
+    description: 'Fullstack web developer',
+    url: 'https://riadh.me',
+    siteName: 'Riadh Laabidi',
+    locale: 'en_US',
+    type: 'website',
   },
   robots: {
     index: true,
@@ -28,32 +28,32 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
     },
   },
   twitter: {
-    title: "Riadh Laabidi",
-    card: "summary_large_image",
+    title: 'Riadh Laabidi',
+    card: 'summary_large_image',
   },
-};
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en">
-      <body className={GeistSans.className + " font-light text-white"}>
+      <body className={GeistSans.className + ' font-light text-white'}>
         <GoogleTagManager gtmId={GTM_ID} />
         <Header />
-        <main className="w-full lg:w-4/5 m-auto flex min-h-screen flex-col justify-between px-10 mt-20 mb-20 lg:mb-0">
+        <main className="m-auto mb-20 mt-20 flex min-h-screen w-full flex-col justify-between px-5 lg:mb-0 lg:w-4/5 lg:px-10">
           {children}
         </main>
         <Footer />
       </body>
     </html>
-  );
+  )
 }
