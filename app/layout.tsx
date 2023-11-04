@@ -4,6 +4,7 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import { GoogleTagManager } from '@next/third-parties/google'
 import { GeistSans } from 'geist/font'
+import Analytics from './components/Analytics'
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID!
 
@@ -46,6 +47,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <Analytics />
+      </head>
       <body className={GeistSans.className + ' font-light text-white'}>
         <GoogleTagManager gtmId={GTM_ID} />
         <Header />
