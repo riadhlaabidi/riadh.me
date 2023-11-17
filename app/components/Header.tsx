@@ -1,25 +1,25 @@
-'use client'
-import Link from 'next/link'
-import { useState } from 'react'
+'use client';
+import Link from 'next/link';
+import { useState } from 'react';
 
 const navItems = [
   { path: '/', name: 'Home' },
   { path: '/projects', name: 'Projects' },
   { path: '/contact', name: 'Contact' },
   { path: '/blog', name: 'Blog' },
-]
+];
 
 export function NavLink() {
-  return <Link href={'/'}>Home</Link>
+  return <Link href={'/'}>Home</Link>;
 }
 
 export default function Header() {
-  const [isCollapsed, setIsCollapsed] = useState(true)
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   return (
     <header className="sticky top-0">
       <nav className="py-5 lg:py-7 lg:backdrop-blur-lg">
-        <div className="mx-auto flex justify-end px-5 lg:w-4/5 lg:justify-between lg:px-10">
+        <div className="mx-auto flex justify-end px-5 lg:w-[75%] lg:justify-between lg:px-10">
           {isCollapsed && (
             <div className="flex lg:flex-1">
               <Link href={'/'} className="-m-1.5 hidden p-1.5 lg:flex">
@@ -198,5 +198,5 @@ export default function Header() {
       )}
       <div className="hidden h-px w-full bg-zinc-700/40 lg:block" />
     </header>
-  )
+  );
 }

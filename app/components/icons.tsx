@@ -1,6 +1,4 @@
-import Link from 'next/link'
-
-const Linkedin = () => {
+export function LinkedinIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -14,10 +12,10 @@ const Linkedin = () => {
         <path d="M16-.034C7.158-.034-.034 7.158-.034 16S7.158 32.034 16 32.034 32.034 24.842 32.034 16 24.842-.034 16-.034zm0 31C7.748 30.966 1.034 24.252 1.034 16S7.748 1.034 16 1.034 30.966 7.748 30.966 16 24.252 30.966 16 30.966z"></path>
       </g>
     </svg>
-  )
+  );
 }
 
-const Github = () => {
+export function GithubIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -31,10 +29,10 @@ const Github = () => {
         <path d="M16 1c8.271 0 15 6.729 15 15s-6.729 15-15 15S1 24.271 1 16 7.729 1 16 1m0-1C7.163 0 0 7.164 0 16s7.163 16 16 16 16-7.163 16-16S24.836 0 16 0z"></path>
       </g>
     </svg>
-  )
+  );
 }
 
-const Twitter = () => {
+export function TwitterIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -48,23 +46,5 @@ const Twitter = () => {
         <path d="M16 1c8.271 0 15 6.729 15 15s-6.729 15-15 15S1 24.271 1 16 7.729 1 16 1m0-1C7.163 0 0 7.164 0 16s7.163 16 16 16 16-7.164 16-16S24.837 0 16 0z"></path>
       </g>
     </svg>
-  )
-}
-
-export default function SocialIcon({
-  id,
-  name,
-  href,
-}: {
-  id: string
-  href: string
-  name: string
-}) {
-  return (
-    <Link id={id} href={href} target="_blank" rel="noreferer noopener nofollow">
-      {name === 'linkedin' && <Linkedin />}
-      {name === 'github' && <Github />}
-      {name === 'twitter' && <Twitter />}
-    </Link>
-  )
+  );
 }

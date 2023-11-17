@@ -1,5 +1,5 @@
-import { NextResponse, type NextRequest, userAgent } from 'next/server'
-import nodemailer from 'nodemailer'
+import { NextResponse, type NextRequest, userAgent } from 'next/server';
+import nodemailer from 'nodemailer';
 
 const transport = nodemailer.createTransport({
   host: process.env.NEXT_TRANSPORT_HOST,
@@ -8,11 +8,11 @@ const transport = nodemailer.createTransport({
     user: process.env.NEXT_TRANSPORT_USERNAME,
     pass: process.env.NEXT_TRANSPORT_PASSWORD,
   },
-})
+});
 
 export async function POST(request: NextRequest) {
-  const { firstname, lastname, email, message } = await request.json()
-  const ua = userAgent(request)
+  const { firstname, lastname, email, message } = await request.json();
+  const ua = userAgent(request);
 
   try {
     await transport.sendMail({
@@ -43,10 +43,6 @@ export async function POST(request: NextRequest) {
               <br>
               <small><strong>OS:</strong> ${ua.os.name} ${ua.os.version}</small>
               <br>
-              <small><strong>CPU:</strong> ${ua.cpu.architecture}</small>
-              <br>
-              <small><strong>Engine:</strong> ${ua.engine.name} ${ua.engine.version}</small>
-              <br>
               <small><strong>isBot:</strong> ${ua.isBot}</small>
               <br>
               <small><strong>Country:</strong> ${request.geo?.country}</small>
@@ -57,16 +53,16 @@ export async function POST(request: NextRequest) {
           </div>
       </body>
       </html>`,
-    })
+    });
 
     return NextResponse.json(
       { message: 'Email is sent successfully' },
       { status: 200 },
-    )
+    );
   } catch (error) {
     return NextResponse.json(
       { message: 'Failed to send email' },
       { status: 500 },
-    )
+    );
   }
 }

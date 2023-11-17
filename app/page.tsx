@@ -1,11 +1,10 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import SocialIcon from './components/SocialIcon'
-import { Metadata } from 'next'
+import Image from 'next/image';
+import Link from 'next/link';
+import { GithubIcon, LinkedinIcon, TwitterIcon } from './components/icons';
 
 export default function Home() {
   return (
-    <section className="mx-auto flex w-full flex-col items-center p-0 ">
+    <section className="mx-auto flex w-full flex-col items-center p-0">
       <div className="flex flex-col items-center">
         <Image
           className="rounded-full"
@@ -14,6 +13,7 @@ export default function Home() {
           quality={100}
           width={110}
           height={110}
+          priority
         />
         <h1 className="mt-8 text-center text-4xl leading-tight md:text-6xl lg:text-large ">
           Hello, I&apos;m <br />
@@ -42,22 +42,28 @@ export default function Home() {
         </Link>
       </div>
       <div className="mt-10 flex gap-4">
-        <SocialIcon
-          id="social-github"
+        <a
           href="https://github.com/riadhlaabidi"
-          name="github"
-        />
-        <SocialIcon
-          id="social-linkedin"
+          target="_blank"
+          rel="noreferer noopener nofollow"
+        >
+          <GithubIcon />
+        </a>
+        <a
           href="https://www.linkedin.com/in/riadhlaabidi/"
-          name="linkedin"
-        />
-        <SocialIcon
-          id="social-twitter"
+          target="_blank"
+          rel="noreferer noopener nofollow"
+        >
+          <LinkedinIcon />
+        </a>
+        <a
           href="https://twitter.com/riadh__laabidi"
-          name="twitter"
-        />
+          target="_blank"
+          rel="noreferer noopener nofollow"
+        >
+          <TwitterIcon />
+        </a>
       </div>
     </section>
-  )
+  );
 }

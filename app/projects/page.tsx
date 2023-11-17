@@ -1,7 +1,7 @@
-import { Metadata } from 'next'
-import Card from '../components/Card'
-import Divider from '../components/Divider'
-import Link from 'next/link'
+import Card from '../components/Card';
+import Divider from '../components/Divider';
+import Link from 'next/link';
+import { allProjects } from 'contentlayer/generated';
 
 export default function Projects() {
   return (
@@ -12,15 +12,26 @@ export default function Projects() {
       </p>
       <Divider />
       <div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card>
-          <Link href="#">
-            <h2 className="text-2xl font-bold">riadh.me</h2>
-            <p className="mt-6 text-zinc-400 group-hover:text-zinc-100">
-              This portfolio website.
-            </p>
-          </Link>
-        </Card>
+        {allProjects
+          .sort((a, b) => {
+            if (new Date(a.lastModified) > new Date(b.lastModified)) {
+              return -1;
+            }
+            return 1;
+          })
+          .map(project => (
+            <Card key={project.slug}>
+              <Link href={`/projects/${project.slug}`}>
+                <h2 className="text-2xl font-bold text-zinc-200 group-hover:text-white">
+                  {project.name}
+                </h2>
+                <p className="mt-7 text-zinc-400 group-hover:text-zinc-100">
+                  {project.description}
+                </p>
+              </Link>
+            </Card>
+          ))}
       </div>
     </>
-  )
+  );
 }

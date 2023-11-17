@@ -1,5 +1,5 @@
-import { Metadata } from 'next'
-import { ReactNode } from 'react'
+import { Metadata } from 'next';
+import { ReactNode } from 'react';
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -8,8 +8,8 @@ export const metadata: Metadata = {
     title: 'Projects | Riadh Laabidi',
     description: 'Checkout a list of projects made by Riadh Laabidi',
   },
-}
+};
 
 export default function ProjectsLayout({ children }: { children: ReactNode }) {
-  return <section>{children}</section>
+  return <section>{children}</section>;
 }

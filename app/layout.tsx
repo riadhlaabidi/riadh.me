@@ -1,12 +1,13 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import Footer from './components/Footer'
-import Header from './components/Header'
-import { GoogleTagManager } from '@next/third-parties/google'
-import { GeistSans } from 'geist/font'
-import Analytics from './components/Analytics'
+import './globals.css';
+import type { Metadata } from 'next';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import { GoogleTagManager } from '@next/third-parties/google';
+import Analytics from './components/Analytics';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID!
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID!;
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://riadh.me'),
@@ -38,26 +39,26 @@ export const metadata: Metadata = {
     title: 'Riadh Laabidi',
     card: 'summary_large_image',
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
         <Analytics />
       </head>
-      <body className={GeistSans.className + ' font-light text-white'}>
+      <body className="font-light text-white">
         <GoogleTagManager gtmId={GTM_ID} />
         <Header />
-        <main className="m-auto mb-20 mt-10 flex min-h-screen w-full flex-col justify-between px-5 lg:mb-0 lg:mt-20 lg:w-4/5 lg:px-10">
+        <main className="m-auto mb-20 mt-10 flex min-h-screen w-full flex-col justify-between px-6 lg:mb-0 lg:mt-20 lg:w-[75%] lg:px-10">
           {children}
         </main>
         <Footer />
       </body>
     </html>
-  )
+  );
 }

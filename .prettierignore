@@ -3,3 +3,5 @@ node_modules
 .husky
 .git 
 package-lock.json
+.gitignore
+.prettierignore
