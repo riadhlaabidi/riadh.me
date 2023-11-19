@@ -17,6 +17,14 @@ export const Project = defineDocumentType(() => ({
       type: 'string',
       required: true,
     },
+    repository: {
+      type: 'string',
+      required: false,
+    },
+    url: {
+      type: 'string',
+      required: false,
+    },
   },
   computedFields: {
     slug: { type: 'string', resolve: project => project._raw.flattenedPath },

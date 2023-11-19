@@ -176,21 +176,18 @@ export default function Header() {
             </div>
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
-                <ul className="mt-14 space-y-5">
+                <div className="mt-14 flex flex-col space-y-5">
                   {navItems.map((item, index) => (
-                    <li
+                    <Link
                       key={item.name + index}
+                      className="text-lg font-normal hover:text-primary-green"
+                      href={item.path}
                       onClick={() => setIsCollapsed(true)}
                     >
-                      <Link
-                        className="text-lg font-normal hover:text-primary-green"
-                        href={item.path}
-                      >
-                        {item.name}
-                      </Link>
-                    </li>
+                      {item.name}
+                    </Link>
                   ))}
-                </ul>
+                </div>
               </div>
             </div>
           </div>
