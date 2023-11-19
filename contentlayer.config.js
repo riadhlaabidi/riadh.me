@@ -25,6 +25,11 @@ export const Project = defineDocumentType(() => ({
       type: 'string',
       required: false,
     },
+    stack: {
+      type: 'list',
+      of: { type: 'string' },
+      required: true,
+    },
   },
   computedFields: {
     slug: { type: 'string', resolve: project => project._raw.flattenedPath },
