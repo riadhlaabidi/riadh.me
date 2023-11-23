@@ -34,6 +34,8 @@ export default async function Image({ params }: { params: { slug: string } }) {
       <div
         style={{
           backgroundImage: 'url(https://riadh.me/images/og-bg.png)',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
           display: 'flex',
           flexDirection: 'column',
           width: '100%',
