@@ -5,6 +5,27 @@ import { format, parseISO } from 'date-fns';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const project = allProjects.find((p: Project) => p.slug === params.slug);
+
+  if (!project) {
+    return null;
+  }
+
+  return {
+    title: `${project.name} | Riadh Laabidi`,
+    description: project.description,
+    openGraph: {
+      title: `${project.name} | Riadh Laabidi`,
+      description: project.description,
+    },
+  };
+}
+
 export async function generateStaticParams() {
   return allProjects.map((project: Project) => ({
     params: { slug: project.slug },
