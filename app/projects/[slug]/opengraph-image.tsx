@@ -3,6 +3,11 @@ import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
 
+const size = {
+  width: 1200,
+  height: 630,
+};
+
 export function generateImageMetadata({
   params,
 }: {
@@ -10,6 +15,7 @@ export function generateImageMetadata({
 }) {
   const metadata = {
     contentType: 'image/png',
+    size: size,
     id: 'og-image',
   };
   const project = allProjects.find((p: Project) => p.slug === params.slug);
@@ -34,22 +40,20 @@ export default async function Image({ params }: { params: { slug: string } }) {
       <div
         style={{
           backgroundImage: 'url(https://riadh.me/images/og-bg.png)',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
           display: 'flex',
           flexDirection: 'column',
           width: '100%',
           height: '100%',
           alignItems: 'flex-start',
           justifyContent: 'center',
-          padding: 210,
+          padding: 140,
         }}
       >
         <h2
           style={{
             fontFamily: 'Geist',
             color: '#fff',
-            fontSize: 100,
+            fontSize: 56,
           }}
         >
           <span>{project.name}</span>
@@ -57,8 +61,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
       </div>
     ),
     {
-      width: 1920,
-      height: 1080,
+      ...size,
       fonts: [
         {
           name: 'Geist',
