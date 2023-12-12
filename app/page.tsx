@@ -26,14 +26,14 @@ export default function Home() {
         </p>
       </div>
       <div className="mt-9 flex flex-col gap-3 lg:flex-row">
-        <Link
+        <a
           id="download-resume"
           href="/files/resume-riadh-laabidi.pdf"
-          prefetch={false}
           className="rounded-full border border-zinc-300 bg-zinc-300 px-12 py-[10px] font-normal uppercase text-black hover:bg-transparent hover:text-zinc-300"
+          download
         >
           Download resume
-        </Link>
+        </a>
         <Link
           href="/contact"
           className="rounded-full border border-primary-green bg-primary-green px-12 py-[10px] text-center font-normal uppercase text-black   hover:bg-transparent hover:text-primary-green"
