@@ -11,7 +11,7 @@ const transport = nodemailer.createTransport({
 });
 
 export async function POST(request: NextRequest) {
-  const { firstname, lastname, email, message } = await request.json();
+  const { name, email, message } = await request.json();
   const ua = userAgent(request);
 
   try {
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
           <div style="background-color: #fff; border-radius: 5px; padding: 20px; font-size: 1rem;">
               <h1>Contact request</h1>
               <p>You have received a message from your potfolio contact form:</p>
-              <p><strong>Name:</strong> ${firstname} ${lastname}</p>
+              <p><strong>Name:</strong> ${name}</p>
               <p><strong>Email:</strong> ${email}</p>
               <h3>Message:</h3>
               <p>${message}</p>

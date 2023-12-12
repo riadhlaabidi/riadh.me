@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { ChangeEvent, ChangeEventHandler, FormEvent, useState } from 'react'
+import { ChangeEvent, ChangeEventHandler, FormEvent, useState } from 'react';
 
 function TextInput({
   name,
@@ -9,11 +9,11 @@ function TextInput({
   type,
   onChange,
 }: {
-  name: string
-  id: string
-  value: string
-  type: string
-  onChange: ChangeEventHandler<HTMLInputElement>
+  name: string;
+  id: string;
+  value: string;
+  type: string;
+  onChange: ChangeEventHandler<HTMLInputElement>;
 }) {
   return (
     <input
@@ -25,7 +25,7 @@ function TextInput({
       onChange={onChange}
       required
     />
-  )
+  );
 }
 
 function InputLabel({
@@ -33,33 +33,32 @@ function InputLabel({
   label,
   required,
 }: {
-  forId: string
-  label: string
-  required: boolean
+  forId: string;
+  label: string;
+  required: boolean;
 }) {
   return (
     <div>
       <label htmlFor={forId}>{label}</label>
       {required && <span className="ml-1 text-xs text-red-700">&#42;</span>}
     </div>
-  )
+  );
 }
 
 export default function Contact() {
-  const [firstname, setFirstname] = useState<string>('')
-  const [lastname, setLastname] = useState<string>('')
-  const [email, setEmail] = useState<string>('')
-  const [message, setMessage] = useState<string>('')
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [message, setMessage] = useState<string>('');
 
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [isSent, setIsSent] = useState<boolean>(false)
-  const [reachedLimit, setReachedLimit] = useState<boolean>(false)
-  const [errors, setErrors] = useState([])
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isSent, setIsSent] = useState<boolean>(false);
+  const [reachedLimit, setReachedLimit] = useState<boolean>(false);
+  const [errors, setErrors] = useState([]);
 
   const handleSendMessage = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+    event.preventDefault();
 
-    setIsLoading(true)
+    setIsLoading(true);
 
     try {
       const res = await fetch('/api/send', {
@@ -68,37 +67,35 @@ export default function Contact() {
         },
         method: 'POST',
         body: JSON.stringify({
-          firstname: firstname,
-          lastname: lastname,
+          name: name,
           email: email,
           message: message,
         }),
-      })
+      });
 
       switch (res.status) {
         case 200: {
-          setIsSent(true)
-          setFirstname('')
-          setLastname('')
-          setEmail('')
-          setMessage('')
-          break
+          setIsSent(true);
+          setName('');
+          setEmail('');
+          setMessage('');
+          break;
         }
         case 400: {
-          const data = await res.json()
-          setErrors(data.errors)
+          const data = await res.json();
+          setErrors(data.errors);
         }
         case 429: {
-          setReachedLimit(true)
-          break
+          setReachedLimit(true);
+          break;
         }
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <>
@@ -154,45 +151,32 @@ export default function Contact() {
       </div>
       <form onSubmit={handleSendMessage} className="mt-6 w-full lg:w-2/3">
         <div className="flex flex-col md:flex-row md:gap-4">
-          <div className="w-full md:w-1/2">
-            <InputLabel forId="firstname" label="First Name" required />
+          <div className="mt-5 w-full md:mt-0 md:w-1/2">
+            <InputLabel forId="name" label="Name" required />
             <TextInput
-              name="firstname"
-              id="firstname"
+              name="name"
+              id="name"
               type="text"
-              value={firstname}
+              value={name}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setFirstname(e.target.value)
+                setName(e.target.value)
               }
             />
           </div>
           <div className="mt-5 w-full md:mt-0 md:w-1/2">
-            <InputLabel forId="lastname" label="Last Name" required />
-
+            <InputLabel forId="email" label="Email" required />
             <TextInput
-              name="lastname"
-              id="lastname"
+              name="email"
+              id="email"
               type="text"
-              value={lastname}
+              value={email}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setLastname(e.target.value)
+                setEmail(e.target.value)
               }
             />
           </div>
         </div>
 
-        <div className="mt-5">
-          <InputLabel forId="email" label="Email" required />
-          <TextInput
-            name="email"
-            id="email"
-            type="text"
-            value={email}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setEmail(e.target.value)
-            }
-          />
-        </div>
         <div className="mt-5">
           <InputLabel forId="message" label="Message" required />
           <textarea
@@ -207,7 +191,7 @@ export default function Contact() {
             }
           ></textarea>
         </div>
-        <div className="mt-8 flex flex-wrap items-center justify-end gap-4">
+        <div className="mt-8 flex flex-wrap items-center">
           {isSent && (
             <p className="text-primary-green">
               &#10003; Thanks for reaching out. I&apos;ll respond shortly.
@@ -220,12 +204,12 @@ export default function Contact() {
           )}
           {!isSent && !reachedLimit && (
             <button
-              className="float-right rounded-full border border-primary-green  bg-primary-green px-12 py-[10px] font-normal uppercase text-black hover:bg-transparent hover:text-primary-green disabled:bg-transparent disabled:text-primary-green disabled:opacity-60"
+              className="w-full rounded-lg border border-zinc-300 bg-zinc-300 px-12 py-[10px] font-normal uppercase text-black hover:bg-transparent hover:text-zinc-300 disabled:bg-transparent disabled:text-zinc-300 disabled:opacity-60"
               type="submit"
               disabled={isLoading}
             >
               {isLoading ? (
-                <span className="flex items-center">
+                <span className="flex items-center justify-center">
                   <svg
                     className="mr-2 animate-spin"
                     xmlns="http://www.w3.org/2000/svg"
@@ -235,14 +219,14 @@ export default function Contact() {
                     height={20}
                   >
                     <circle
-                      className="stroke-primary-green opacity-25"
+                      className="stroke-zinc-300 opacity-25"
                       cx="12"
                       cy="12"
                       r="10"
                       strokeWidth="4"
                     ></circle>
                     <path
-                      className="fill-primary-green opacity-75"
+                      className="fill-zinc-300 opacity-75"
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     ></path>
                   </svg>
@@ -256,5 +240,5 @@ export default function Contact() {
         </div>
       </form>
     </>
-  )
+  );
 }
