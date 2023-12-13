@@ -4,6 +4,7 @@ import { Mdx } from 'app/components/mdx';
 import { format, parseISO } from 'date-fns';
 import Link from 'next/link';
 import { ReactNode } from 'react';
+import TechBadge from '@/app/components/tech-badge';
 
 export async function generateMetadata({
   params,
@@ -32,14 +33,6 @@ export async function generateStaticParams() {
   }));
 }
 
-function Badge({ children }: { children: ReactNode }) {
-  return (
-    <span className="rounded-full bg-zinc-700/60 px-3 py-1 text-sm font-medium">
-      {children}
-    </span>
-  );
-}
-
 function ExternalLink({
   href,
   children,
@@ -50,7 +43,7 @@ function ExternalLink({
   return (
     <a
       href={href}
-      className="flex items-center gap-[2px] rounded-full border border-zinc-200 px-4 py-2 font-medium text-zinc-200 hover:border-primary-green hover:text-primary-green"
+      className="flex items-center gap-[2px] rounded-full border border-zinc-200 px-4 py-2 text-sm font-medium text-zinc-200 hover:border-primary-green hover:text-primary-green"
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -109,14 +102,15 @@ export default function Project({ params }: { params: { slug: string } }) {
               {format(parseISO(project.lastModified), 'LLLL, d yyyy')}
             </small>
           </div>
+
           {(project.repository || project.url) && (
-            <div className="mt-10">
+            <div className="mt-8">
               <div className="flex flex-wrap gap-4 ">
                 {project.repository && (
                   <ExternalLink
                     href={`https://github.com/${project.repository}`}
                   >
-                    Github
+                    GitHub
                   </ExternalLink>
                 )}
                 {project.url && (
@@ -126,10 +120,15 @@ export default function Project({ params }: { params: { slug: string } }) {
             </div>
           )}
         </div>
-        <div className="mt-10 flex gap-1">
-          {project.stack.map((tech: string) => (
-            <Badge key={tech}>{tech}</Badge>
-          ))}
+        <div className="mt-8 flex lg:justify-end">
+          <span className="mr-2 self-end text-sm text-secondary-gray">
+            Stack:
+          </span>
+          <div className="flex gap-2">
+            {project.stack.map((tech: string) => (
+              <TechBadge key={tech} tech={tech} />
+            ))}
+          </div>
         </div>
         {/* <p className="mt-7 mb-16 font-normal leading-normal lg:max-w-[60%]">
             {project.description}

@@ -6,6 +6,10 @@ export default function Home() {
   return (
     <section className="mx-auto flex w-full flex-col items-center p-0">
       <div className="flex flex-col items-center">
+        <div className=" mb-8 flex items-center rounded-full border border-zinc-600 px-4 py-1 text-sm font-medium text-zinc-200 transition-all duration-200 hover:scale-110">
+          <span className="mr-2 inline-block h-2 w-2 rounded-full bg-green-500"></span>
+          <p>Available for hire</p>
+        </div>
         <Image
           className="rounded-full"
           src="/images/me.png"
@@ -19,10 +23,9 @@ export default function Home() {
           Hello, I&apos;m <br />
           Riadh Laabidi
         </h1>
-        <p className="mt-6 max-w-3xl text-center text-base text-secondary-gray md:text-lg">
-          I&apos;m a fullstack developer, currently working on some interesting
-          projects. I use Spring boot & Angular on a daily basis, and I&apos;m
-          an open source enthusiast.
+        <p className="mt-6 max-w-2xl text-center text-base text-secondary-gray md:text-lg">
+          I&apos;m a full stack developer, I enjoy crafting useful web
+          applications and I&apos;m an open source enthusiast.
         </p>
       </div>
       <div className="mt-9 flex flex-col gap-3 lg:flex-row">
