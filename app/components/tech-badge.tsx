@@ -70,7 +70,8 @@ export default function TechBadge({ tech }: { tech: string }) {
       }}
     >
       <Icon />
-      <span className="z-1 invisible absolute bottom-full left-1/2 -ml-12 mb-1 w-24 rounded-lg bg-zinc-700/50 py-1 text-center text-sm font-medium text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:visible group-hover:opacity-100 ">
+
+      <span className="invisible absolute bottom-full left-1/2 -ml-12 mb-1 w-24 rounded-lg bg-zinc-700/50 py-1 text-center text-sm font-medium text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:visible group-hover:opacity-100 ">
         {name}
       </span>
     </div>

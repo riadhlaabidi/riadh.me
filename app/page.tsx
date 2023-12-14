@@ -7,7 +7,10 @@ export default function Home() {
     <section className="mx-auto flex w-full flex-col items-center p-0">
       <div className="flex flex-col items-center">
         <div className=" mb-8 flex items-center rounded-full border border-zinc-600 px-4 py-1 text-sm font-medium text-zinc-200 transition-all duration-200 hover:scale-110">
-          <span className="mr-2 inline-block h-2 w-2 rounded-full bg-green-500"></span>
+          <span className="relative mr-2 flex h-3 w-3 items-center justify-center">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-60"></span>
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+          </span>
           <p>Available for hire</p>
         </div>
         <Image

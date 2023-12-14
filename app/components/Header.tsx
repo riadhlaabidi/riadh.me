@@ -17,7 +17,7 @@ export default function Header() {
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   return (
-    <header className="sticky top-0">
+    <header className="sticky top-0 z-50">
       <nav className="py-5 lg:py-7 lg:backdrop-blur-lg">
         <div className="mx-auto flex justify-end px-5 lg:w-[75%] lg:justify-between lg:px-10">
           {isCollapsed && (
@@ -104,8 +104,8 @@ export default function Header() {
 
       {!isCollapsed && (
         <div className="lg:hidden" role="dialog" aria-modal="true">
-          <div className="z-51 fixed inset-0"></div>
-          <div className="z-51 bg-zinc-850 fixed inset-y-0 right-0 w-full overflow-y-hidden rounded-2xl bg-zinc-700/40 px-5 py-5 backdrop-blur-xl sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <div className="fixed inset-0"></div>
+          <div className="bg-zinc-850 fixed inset-y-0 right-0 w-full overflow-y-hidden rounded-2xl bg-zinc-700/40 px-5 py-5 backdrop-blur-xl sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <Link
                 href={'/'}
