@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@next/third-parties": "^14.0.0",
+    "@vercel/speed-insights": "^1.0.2",
     "contentlayer": "^0.3.4",
     "date-fns": "^2.30.0",
     "geist": "^1.0.0",

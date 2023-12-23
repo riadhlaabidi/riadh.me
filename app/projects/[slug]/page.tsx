@@ -104,8 +104,8 @@ export default function Project({ params }: { params: { slug: string } }) {
           </div>
 
           {(project.repository || project.url) && (
-            <div className="mt-8">
-              <div className="flex flex-wrap gap-4 ">
+            <div className="mt-8 lg:mt-10">
+              <div className="flex flex-wrap gap-4">
                 {project.repository && (
                   <ExternalLink
                     href={`https://github.com/${project.repository}`}
