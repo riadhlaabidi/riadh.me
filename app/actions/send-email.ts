@@ -1,5 +1,7 @@
-import { NextResponse, type NextRequest, userAgent } from 'next/server';
+'use server';
+
 import nodemailer from 'nodemailer';
+import { z } from 'zod';
 
 const transport = nodemailer.createTransport({
   host: process.env.NEXT_TRANSPORT_HOST,
@@ -10,9 +12,37 @@ const transport = nodemailer.createTransport({
   },
 });
 
-export async function POST(request: NextRequest) {
-  const { name, email, message } = await request.json();
-  const ua = userAgent(request);
+const schema = z.object({
+  name: z
+    .string()
+    .max(100, { message: "Oof, that's way too long to remember! 🙁" })
+    .min(1, { message: 'Maybe you forgot your name 🤔' }),
+  email: z.string().email({
+    message: 'Looks like this email address is invalid 😬',
+  }),
+  message: z
+    .string()
+    .max(1000, { message: "Oops, That's a very long message 😅" })
+    .min(1, { message: 'Empty message! Are you sure? 😅' }),
+});
+
+export async function sendEmail(prevState: any, formData: FormData) {
+  const name = formData.get('name');
+  const email = formData.get('email');
+  const message = formData.get('message');
+
+  const validatedFields = schema.safeParse({
+    name,
+    email,
+    message,
+  });
+
+  if (!validatedFields.success) {
+    return {
+      sent: false,
+      errors: validatedFields.error.formErrors.fieldErrors,
+    };
+  }
 
   try {
     await transport.sendMail({
@@ -34,35 +64,17 @@ export async function POST(request: NextRequest) {
               <p><strong>Email:</strong> ${email}</p>
               <h3>Message:</h3>
               <p>${message}</p>
-              <hr style="margin-top:100px;">
-              <small><strong>Browser:</strong> ${ua.browser.name} ${ua.browser.version}</small>
-              <br>
-              <small><strong>Device:</strong> ${ua.device.model} ${ua.device.type} ${ua.device.vendor}</small>
-              <br>
-              <small><strong>User agent:</strong> ${ua.ua}</small>
-              <br>
-              <small><strong>OS:</strong> ${ua.os.name} ${ua.os.version}</small>
-              <br>
-              <small><strong>isBot:</strong> ${ua.isBot}</small>
-              <br>
-              <small><strong>Country:</strong> ${request.geo?.country}</small>
-              <br>
-              <small><strong>Region:</strong> ${request.geo?.region}</small>
-              <br>
-              <small><strong>City:</strong> ${request.geo?.city}</small>
           </div>
       </body>
       </html>`,
     });
 
-    return NextResponse.json(
-      { message: 'Email is sent successfully' },
-      { status: 200 },
-    );
+    return {
+      sent: true,
+    };
   } catch (error) {
-    return NextResponse.json(
-      { message: 'Failed to send email' },
-      { status: 500 },
-    );
+    return {
+      sent: false,
+    };
   }
 }

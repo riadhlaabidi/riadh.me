@@ -1,28 +1,23 @@
 'use client';
 
-import { ChangeEvent, ChangeEventHandler, FormEvent, useState } from 'react';
+import { sendEmail } from '../actions/send-email';
+import { useFormState, useFormStatus } from 'react-dom';
 
 function TextInput({
   name,
   id,
-  value,
   type,
-  onChange,
 }: {
   name: string;
   id: string;
-  value: string;
   type: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
 }) {
   return (
     <input
       type={type}
       name={name}
       id={id}
-      value={value}
       className="mt-3 block w-full rounded border border-zinc-500 bg-transparent px-2 py-3 text-zinc-200  focus:outline-none"
-      onChange={onChange}
       required
     />
   );
@@ -45,57 +40,56 @@ function InputLabel({
   );
 }
 
+function ErrorMessage({ message }: { message: string }) {
+  return <small className="text-sm text-amber-600">{message}</small>;
+}
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  return (
+    <button
+      className="w-full rounded-lg border border-zinc-300 bg-zinc-300 px-12 py-[10px] font-normal uppercase text-black hover:bg-transparent hover:text-zinc-300 disabled:bg-transparent disabled:text-zinc-300 disabled:opacity-60"
+      type="submit"
+      disabled={pending}
+    >
+      {pending ? (
+        <span className="flex items-center justify-center">
+          <svg
+            className="mr-2 animate-spin"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            width={20}
+            height={20}
+          >
+            <circle
+              className="stroke-zinc-300 opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              strokeWidth="4"
+            ></circle>
+            <path
+              className="fill-zinc-300 opacity-75"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+          Sending...
+        </span>
+      ) : (
+        'Send message'
+      )}
+    </button>
+  );
+}
+
+const initialState = {
+  sent: false,
+  errors: {},
+};
+
 export default function Contact() {
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
-
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isSent, setIsSent] = useState<boolean>(false);
-  const [reachedLimit, setReachedLimit] = useState<boolean>(false);
-  const [errors, setErrors] = useState([]);
-
-  const handleSendMessage = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    setIsLoading(true);
-
-    try {
-      const res = await fetch('/api/send', {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          message: message,
-        }),
-      });
-
-      switch (res.status) {
-        case 200: {
-          setIsSent(true);
-          setName('');
-          setEmail('');
-          setMessage('');
-          break;
-        }
-        case 400: {
-          const data = await res.json();
-          setErrors(data.errors);
-        }
-        case 429: {
-          setReachedLimit(true);
-          break;
-        }
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const [state, sendAction] = useFormState(sendEmail, initialState);
 
   return (
     <>
@@ -149,31 +143,21 @@ export default function Contact() {
           <span>Tunisia</span>
         </p>
       </div>
-      <form onSubmit={handleSendMessage} className="mt-6 w-full lg:w-2/3">
+      <form action={sendAction} className="mt-6 w-full lg:w-2/3">
         <div className="flex flex-col md:flex-row md:gap-4">
           <div className="mt-5 w-full md:mt-0 md:w-1/2">
             <InputLabel forId="name" label="Name" required />
-            <TextInput
-              name="name"
-              id="name"
-              type="text"
-              value={name}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setName(e.target.value)
-              }
-            />
+            <TextInput name="name" id="name" type="text" />
+            {state.errors?.name && (
+              <ErrorMessage message={state.errors.name[0]} />
+            )}
           </div>
           <div className="mt-5 w-full md:mt-0 md:w-1/2">
             <InputLabel forId="email" label="Email" required />
-            <TextInput
-              name="email"
-              id="email"
-              type="text"
-              value={email}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setEmail(e.target.value)
-              }
-            />
+            <TextInput name="email" id="email" type="email" />
+            {state.errors?.email && (
+              <ErrorMessage message={state.errors.email[0]} />
+            )}
           </div>
         </div>
 
@@ -185,58 +169,19 @@ export default function Contact() {
             cols={60}
             id="message"
             name="message"
-            value={message}
-            onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-              setMessage(e.target.value)
-            }
+            required
           ></textarea>
+          {state.errors?.message && (
+            <ErrorMessage message={state.errors.message[0]} />
+          )}
         </div>
         <div className="mt-8 flex flex-wrap items-center">
-          {isSent && (
+          {state.sent && (
             <p className="text-primary-green">
               &#10003; Thanks for reaching out. I&apos;ll respond shortly.
             </p>
           )}
-          {reachedLimit && (
-            <p className="text-[#ff3535]">
-              You are sending too many requests. Please retry in an hour.
-            </p>
-          )}
-          {!isSent && !reachedLimit && (
-            <button
-              className="w-full rounded-lg border border-zinc-300 bg-zinc-300 px-12 py-[10px] font-normal uppercase text-black hover:bg-transparent hover:text-zinc-300 disabled:bg-transparent disabled:text-zinc-300 disabled:opacity-60"
-              type="submit"
-              disabled={isLoading}
-            >
-              {isLoading ? (
-                <span className="flex items-center justify-center">
-                  <svg
-                    className="mr-2 animate-spin"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    width={20}
-                    height={20}
-                  >
-                    <circle
-                      className="stroke-zinc-300 opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="fill-zinc-300 opacity-75"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                  </svg>
-                  Sending...
-                </span>
-              ) : (
-                'Send message'
-              )}
-            </button>
-          )}
+          {!state.sent && <SubmitButton />}
         </div>
       </form>
     </>

@@ -6,7 +6,6 @@ import { GoogleTagManager } from '@next/third-parties/google';
 import Analytics from './components/Analytics';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID!;
 
@@ -52,12 +51,11 @@ export default function RootLayout({
       <head>
         <Analytics />
       </head>
-      <body className="font-light text-white">
+      <body className="bg-[#1f1f1f] font-light text-white">
         <GoogleTagManager gtmId={GTM_ID} />
         <Header />
         <main className="m-auto mb-20 mt-10 flex min-h-screen w-full flex-col justify-between px-6 lg:mb-0 lg:mt-20 lg:w-[75%] lg:px-10">
           {children}
-          <SpeedInsights />
         </main>
         <Footer />
       </body>
