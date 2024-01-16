@@ -1,5 +1,6 @@
 'use client';
 
+import { Metadata } from 'next';
 import { sendEmail } from '../actions/send-email';
 import { useFormState, useFormStatus } from 'react-dom';
 
@@ -17,7 +18,7 @@ function TextInput({
       type={type}
       name={name}
       id={id}
-      className="mt-3 block w-full rounded border border-zinc-500 bg-transparent px-2 py-3 text-zinc-200  focus:outline-none"
+      className="mt-3 block w-full rounded border border-zinc-500/50 bg-transparent px-2 py-3 text-zinc-200  focus:outline-none"
       required
     />
   );
@@ -164,7 +165,7 @@ export default function Contact() {
         <div className="mt-5">
           <InputLabel forId="message" label="Message" required />
           <textarea
-            className="mt-3 block w-full rounded border border-zinc-500 bg-transparent px-2 py-3 text-zinc-200  focus:outline-none"
+            className="mt-3 block w-full rounded border border-zinc-500/50 bg-transparent px-2 py-3 text-zinc-200  focus:outline-none"
             rows={4}
             cols={60}
             id="message"
