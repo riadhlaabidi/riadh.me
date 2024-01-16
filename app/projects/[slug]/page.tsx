@@ -1,26 +1,35 @@
 import { notFound } from 'next/navigation';
 import { allProjects, Project } from 'contentlayer/generated';
 import { Mdx } from 'app/components/mdx';
-import { format, parseISO } from 'date-fns';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import TechBadge from '@/app/components/tech-badge';
+import { foramtDate } from '@/app/util/date';
+import { Metadata } from 'next';
 
 export async function generateMetadata({
   params,
 }: {
   params: { slug: string };
-}) {
+}): Promise<Metadata | undefined> {
   const project = allProjects.find((p: Project) => p.slug === params.slug);
 
   if (!project) {
-    return null;
+    return;
   }
 
   return {
-    title: `${project.name} | Riadh Laabidi`,
+    title: project.name,
     description: project.description,
     openGraph: {
+      title: `${project.name} | Riadh Laabidi`,
+      description: project.description,
+      type: 'article',
+      publishedTime: project.lastModified,
+      url: `https://riadh.me/project/${project.slug}`,
+    },
+    twitter: {
+      card: 'summary_large_image',
       title: `${project.name} | Riadh Laabidi`,
       description: project.description,
     },
@@ -65,76 +74,73 @@ function ExternalLink({
 }
 
 export default function Project({ params }: { params: { slug: string } }) {
-  const slug = params.slug;
-  const project = allProjects.find((p: Project) => p.slug === slug);
+  const project = allProjects.find((p: Project) => p.slug === params.slug);
 
   if (!project) {
     notFound();
   }
 
   return (
-    <div className="m-auto w-full md:w-3/4">
-      <header className="mb-14 lg:mb-20">
-        <Link
-          href="/projects"
-          className="flex items-center gap-1 text-zinc-400 hover:text-primary-green"
+    <div className="mx-auto w-full md:w-3/4">
+      <Link
+        href="/projects"
+        className="flex items-center gap-1 text-zinc-400 duration-300 hover:-translate-x-1 hover:text-primary-green"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          width={20}
+          height={20}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            width={20}
-            height={20}
-          >
-            <path
-              fillRule="evenodd"
-              d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z"
-              clipRule="evenodd"
-            />
-          </svg>
-          All projects
-        </Link>
-        <div className="flex flex-col lg:flex-row lg:justify-between">
-          <div className="mt-10">
-            <h1 className=" text-5xl font-bold">{project.name}</h1>
-            <small className="mt-4 block text-sm text-secondary-gray">
-              Last updated:{' '}
-              {format(parseISO(project.lastModified), 'LLLL, d yyyy')}
-            </small>
-          </div>
-
-          {(project.repository || project.url) && (
-            <div className="mt-8 lg:mt-10">
-              <div className="flex flex-wrap gap-4">
-                {project.repository && (
-                  <ExternalLink
-                    href={`https://github.com/${project.repository}`}
-                  >
-                    GitHub
-                  </ExternalLink>
-                )}
-                {project.url && (
-                  <ExternalLink href={project.url}>Website</ExternalLink>
-                )}
-              </div>
+          <path
+            fillRule="evenodd"
+            d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z"
+            clipRule="evenodd"
+          />
+        </svg>
+        All projects
+      </Link>
+      <article>
+        <div className="mb-14 lg:mb-20">
+          <div className="flex flex-col lg:flex-row lg:justify-between">
+            <div className="mt-10">
+              <h1 className=" text-5xl font-bold">{project.name}</h1>
+              <small className="mt-4 block text-sm text-secondary-gray">
+                Last updated: {foramtDate(project.lastModified)}
+              </small>
             </div>
-          )}
-        </div>
-        <div className="mt-8 flex lg:justify-end">
-          <span className="mr-2 self-end text-sm text-secondary-gray">
-            Stack:
-          </span>
-          <div className="flex gap-2">
-            {project.stack.map((tech: string) => (
-              <TechBadge key={tech} tech={tech} />
-            ))}
+
+            {(project.repository || project.url) && (
+              <div className="mt-8 lg:mt-10">
+                <div className="flex flex-wrap gap-4">
+                  {project.repository && (
+                    <ExternalLink
+                      href={`https://github.com/${project.repository}`}
+                    >
+                      GitHub
+                    </ExternalLink>
+                  )}
+                  {project.url && (
+                    <ExternalLink href={project.url}>Website</ExternalLink>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="mt-8 flex lg:justify-end">
+            <span className="mr-2 self-end text-sm text-secondary-gray">
+              Stack:
+            </span>
+            <div className="flex gap-2">
+              {project.stack.map((tech: string) => (
+                <TechBadge key={tech} tech={tech} />
+              ))}
+            </div>
           </div>
         </div>
-        {/* <p className="mt-7 mb-16 font-normal leading-normal lg:max-w-[60%]">
-            {project.description}
-          </p> */}
-      </header>
-      <Mdx source={project.body.code} />
+        <Mdx source={project.body.code} />
+      </article>
     </div>
   );
 }
