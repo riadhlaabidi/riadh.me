@@ -42,14 +42,6 @@ export async function generateMetadata({
   };
 }
 
-export async function generateStaticParams() {
-  return getBlogPosts().map((post: BlogPost) => ({
-    params: {
-      slug: post.slug,
-    },
-  }));
-}
-
 export default async function BlogPostPage({
   params,
 }: {

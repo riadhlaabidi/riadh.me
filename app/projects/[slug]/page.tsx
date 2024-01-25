@@ -43,12 +43,6 @@ export async function generateMetadata({
   };
 }
 
-export async function generateStaticParams() {
-  return getProjects().map((project: Project) => ({
-    params: { slug: project.slug },
-  }));
-}
-
 function ExternalLink({
   href,
   children,
