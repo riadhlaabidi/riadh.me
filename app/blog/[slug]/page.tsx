@@ -1,8 +1,7 @@
 import { CustomMDX } from '@/app/components/mdx';
-import { BlogMetadata, BlogPost, getBlogPosts } from '@/app/db/mdx';
+import { BlogPost, getBlogPosts } from '@/app/db/mdx';
 import { foramtDate } from '@/app/util/date';
 import type { Metadata } from 'next';
-import { compileMDX } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
@@ -17,25 +16,28 @@ export async function generateMetadata({
     return;
   }
 
-  const { frontmatter } = await compileMDX<BlogMetadata>({
-    source: post.content,
-    options: { parseFrontmatter: true },
-  });
-
   return {
-    title: frontmatter.title,
-    description: frontmatter.description,
+    title: post.metadata.title,
+    description: post.metadata.description,
     openGraph: {
-      title: `${frontmatter.title} | Riadh Laabidi`,
-      description: frontmatter.description,
+      title: `${post.metadata.title} | Riadh Laabidi`,
+      images: [
+        {
+          url: `https://riadh.me/og?title=${post.metadata.title}`,
+          alt: `${post.metadata.title} blog post image`,
+        },
+      ],
+
+      description: post.metadata.description,
       type: 'article',
-      publishedTime: frontmatter.publishedAt,
+      publishedTime: post.metadata.publishedAt,
       url: `https://riadh.me/blog/${post.slug}`,
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${frontmatter.title} | Riadh Laabidi`,
-      description: frontmatter.description,
+      title: `${post.metadata.title} | Riadh Laabidi`,
+      description: post.metadata.description,
+      images: [`https://riadh.me/og?title=${post.metadata.title}`],
     },
   };
 }
