@@ -5,7 +5,7 @@ export function LinkedinIcon() {
       viewBox="0 0 32 32"
       width="42"
       height="42"
-      className="fill-secondary-gray hover:fill-primary-green"
+      className="fill-secondary-gray hover:fill-green-500 dark:fill-zinc-500 dark:hover:fill-primary-green"
     >
       <g>
         <path d="M19.515 11.952c-.678 0-1.18.171-1.573.387-.063-.224-.27-.388-.514-.339h-2.984c-.295-.049-.534.19-.443.5v11c-.091.28.148.52.443.5h2.984c.295.02.534-.22.534-.515l-.001-6.648c-.001-.003-.012-.321.189-.54.161-.174.438-.263.821-.263.638 0 .922.261 1.028.845v6.606c-.105.295.134.535.429.515h3.145c.295.02.534-.22.428-.515v-6.828c.105-3.472-2.368-4.705-4.486-4.705zM23.038 23h-2.076v-6.121c0-1.181-.763-1.913-1.99-1.913-.694 0-1.234.204-1.606.606-.517.56-.477 1.27-.366 1.428v6h-2.022v-9.98h1.916v.336a.532.532 0 00.86.423l.14-.108c.405-.319.824-.65 1.622-.65.826 0 3.523.263 3.523 3.637V23zM11 6.966c-1.122 0-2.034.912-2.034 2.034s.912 2.034 2.034 2.034 2.034-.912 2.034-2.034S12.122 6.966 11 6.966zm0 3c-.532 0-.966-.434-.966-.966s.434-.966.966-.966.966.434.966.966-.434.966-.966.966zM12.428 11.951H9.46c-.295 0-.534.239-.46.549v11c-.074.28.165.52.46.5h2.968c.295.02.534-.22.534-.515v-11a.534.534 0 00-.534-.534zM12 23H9.994v-9.98H12V23z"></path>
@@ -22,7 +22,7 @@ export function GithubIcon() {
       viewBox="0 0 32 32"
       width="42"
       height="42"
-      className="fill-secondary-gray hover:fill-primary-green"
+      className="fill-secondary-gray hover:fill-green-500 dark:fill-zinc-500 dark:hover:fill-primary-green"
     >
       <g>
         <path d="M18.52 24.493h-4.528s.006-1.344 0-2.265c-3.099.667-3.964-1.699-3.964-1.699-.566-1.132-1.132-1.699-1.132-1.699-1.132-.673 0-.566 0-.566 1.132 0 1.699 1.132 1.699 1.132.994 1.687 2.762 1.416 3.397 1.132 0-.566.248-1.422.566-1.699-2.473-.279-4.532-1.699-4.532-4.53s.568-3.397 1.135-3.964c-.114-.279-.588-1.311.018-2.831 0 0 1.113 0 2.245 1.699.561-.561 2.265-.566 2.832-.566.565 0 2.269.005 2.83.566 1.132-1.699 2.248-1.699 2.248-1.699.605 1.52.132 2.552.017 2.831.566.566 1.132 1.132 1.132 3.964s-2.056 4.251-4.53 4.53c.319.276.566 1.251.566 1.699l.001 3.965z"></path>
@@ -39,7 +39,7 @@ export function TwitterIcon() {
       viewBox="0 0 32 32"
       width="42"
       height="42"
-      className="fill-secondary-gray hover:fill-primary-green"
+      className="fill-secondary-gray hover:fill-green-500 dark:fill-zinc-500 dark:hover:fill-primary-green"
     >
       <g>
         <path d="M18.014 9.564c-1.439.523-2.348 1.874-2.244 3.351l.035.57-.576-.07c-2.094-.268-3.925-1.175-5.479-2.7l-.76-.756-.196.559c-.414 1.245-.149 2.56.714 3.445.46.489.356.559-.437.268-.276-.093-.518-.163-.541-.128-.08.082.196 1.14.414 1.559.299.582.909 1.152 1.577 1.49l.564.268-.667.012c-.644 0-.667.012-.598.257.23.756 1.139 1.559 2.152 1.909l.714.244-.621.372a6.464 6.464 0 0 1-3.085.861c-.519.012-.944.058-.944.093 0 .116 1.405.767 2.221 1.024 2.451.756 5.364.43 7.551-.861 1.554-.92 3.107-2.746 3.833-4.516.392-.942.783-2.665.783-3.49 0-.536.035-.605.679-1.245.38-.372.737-.779.806-.896.115-.221.103-.221-.483-.024-.978.349-1.117.303-.633-.221.356-.372.783-1.047.783-1.245 0-.035-.172.023-.369.128-.207.116-.667.291-1.013.395l-.621.198-.564-.385c-.311-.209-.748-.442-.978-.512-.589-.163-1.487-.14-2.017.046z"></path>
@@ -55,6 +55,7 @@ export function AngularIcon() {
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 250 250"
+      className="h-6 w-6 md:h-8 md:w-8"
       width="32"
       height="32"
     >
@@ -82,6 +83,7 @@ export function TailwindIcon() {
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 54 33"
+      className="h-6 w-6 md:h-8 md:w-8"
       width="32"
       height="32"
     >
@@ -104,7 +106,12 @@ export function TailwindIcon() {
 
 export function NextjsIcon() {
   return (
-    <svg viewBox="0 0 180 180" width="32" height="32">
+    <svg
+      viewBox="0 0 180 180"
+      width="32"
+      height="32"
+      className="h-6 w-6 md:h-8 md:w-8"
+    >
       <mask
         height="180"
         id=":r8:mask0_408_134"
@@ -167,6 +174,7 @@ export function GaIcon() {
       y="0px"
       width="32"
       height="32"
+      className="h-6 w-6 md:h-8 md:w-8"
       viewBox="0 0 192 192"
       enableBackground="new 0 0 192 192"
     >
@@ -199,6 +207,7 @@ export function MdxLogo() {
       width="32"
       height="32"
       viewBox="0 0 208 128"
+      className="h-6 w-6 md:h-8 md:w-8"
     >
       <path
         fill="none"
@@ -221,6 +230,7 @@ export function PostgresqlLogo() {
       height="32"
       viewBox="0 0 25.6 25.6"
       width="32"
+      className="h-6 w-6 md:h-8 md:w-8"
     >
       <g fill="none" stroke="#fff">
         <path
@@ -269,6 +279,7 @@ export function SpringBootLogo() {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 137.2 123.16"
+      className="h-6 w-6 md:h-8 md:w-8"
       width="32"
       height="32"
     >
@@ -286,6 +297,7 @@ export function JHipsterLogo() {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 136 64"
+      className="h-6 w-6 md:h-8 md:w-8"
       width="32"
       height="32"
     >

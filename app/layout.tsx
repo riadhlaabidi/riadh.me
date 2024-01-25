@@ -1,7 +1,8 @@
 import './globals.css';
+import 'highlight.js/styles/github.css';
 import type { Metadata } from 'next';
 import Footer from './components/Footer';
-import Header from './components/Header';
+import Header from './components/header';
 import { GoogleTagManager } from '@next/third-parties/google';
 import Analytics from './components/Analytics';
 import { GeistSans } from 'geist/font/sans';
@@ -47,14 +48,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html
+      lang="en"
+      className={`bg-white font-light text-primary-gray dark:bg-[#1f1f1f] dark:text-neutral-100 ${GeistSans.variable} ${GeistMono.variable}`}
+    >
       <head>
         <Analytics />
       </head>
-      <body className="bg-[#1f1f1f] font-light text-white">
+      <body className="antialiased">
         <GoogleTagManager gtmId={GTM_ID} />
         <Header />
-        <main className="m-auto mb-20 mt-10 flex min-h-screen w-full flex-col justify-between px-6 lg:mb-0 lg:mt-20 lg:w-[75%] lg:px-10">
+        <main className="m-auto mb-20 mt-10 flex min-h-dvh w-full flex-col justify-between px-6 lg:mb-0 lg:mt-20 lg:w-[75%] lg:px-10">
           {children}
         </main>
         <Footer />

@@ -28,36 +28,35 @@ export default function Header() {
                   width="24"
                   height="24"
                   viewBox="0 0 48 48"
-                  fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
+                    className="fill-neutral-800 dark:fill-neutral-50"
                     d="M20.1081 1.04574H27.6547C33.1776 1.04574 37.6547 5.52289 37.6547 11.0457V12.5267C37.6547 18.0496 33.1776 22.5267 27.6547 22.5267H20.1081V1.04574Z"
-                    fill="white"
                   />
                   <path
                     d="M11.9546 1.04575H16.1069V46.9543H11.9546V1.04575Z"
-                    fill="white"
+                    className="fill-neutral-800 dark:fill-neutral-50"
                   />
                   <rect
                     x="10.3453"
                     y="1.04575"
                     width="0.668407"
                     height="45.9085"
-                    fill="white"
+                    className="fill-neutral-800 dark:fill-neutral-50"
                   />
                   <rect
                     x="18.5039"
                     y="1.04574"
                     width="0.668407"
                     height="45.9085"
-                    fill="white"
+                    className="fill-neutral-800 dark:fill-neutral-50"
                   />
                   <path
                     fillRule="evenodd"
                     clipRule="evenodd"
                     d="M20.1082 41.9326V24.8102L37.6547 41.9326V46.9542H20.1081V41.9326L20.1082 41.9326Z"
-                    fill="white"
+                    className="fill-neutral-800 dark:fill-neutral-50"
                   />
                 </svg>
               </Link>
@@ -66,12 +65,12 @@ export default function Header() {
           <div className="flex lg:hidden">
             <button
               type="button"
-              className="-m-2.5 inline-flex items-center justify-center rounded-md bg-zinc-600/20 p-2.5 text-gray-700 backdrop-blur-sm"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md bg-zinc-300 p-2.5 text-gray-700 backdrop-blur-sm dark:bg-zinc-700/40"
               onClick={() => setIsCollapsed(false)}
             >
               <span className="sr-only">Open main menu</span>
               <svg
-                stroke={isCollapsed ? '#fff' : ''}
+                className="stroke-black dark:stroke-white"
                 width={24}
                 height={24}
                 fill="none"
@@ -91,7 +90,7 @@ export default function Header() {
             {navItems.map((item, index) => (
               <li key={item.name + index}>
                 <Link
-                  className="font-normal hover:text-primary-green"
+                  className="font-normal hover:text-green-500 dark:hover:text-primary-green"
                   href={item.path}
                 >
                   {item.name}
@@ -103,9 +102,8 @@ export default function Header() {
       </nav>
 
       {!isCollapsed && (
-        <div className="lg:hidden" role="dialog" aria-modal="true">
-          <div className="fixed inset-0"></div>
-          <div className="bg-zinc-850 fixed inset-y-0 right-0 w-full overflow-y-hidden rounded-2xl bg-zinc-700/40 px-5 py-5 backdrop-blur-xl sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <div className=" lg:hidden" role="dialog" aria-modal="true">
+          <div className="bg-zinc-850 fixed inset-y-0 right-0 w-full overflow-y-hidden rounded-2xl bg-zinc-300 px-5 py-5 backdrop-blur-xl sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 dark:bg-zinc-700/40">
             <div className="flex items-center justify-between">
               <Link
                 href={'/'}
@@ -123,31 +121,31 @@ export default function Header() {
                 >
                   <path
                     d="M20.1081 1.04574H27.6547C33.1776 1.04574 37.6547 5.52289 37.6547 11.0457V12.5267C37.6547 18.0496 33.1776 22.5267 27.6547 22.5267H20.1081V1.04574Z"
-                    fill="white"
+                    className="fill-neutral-800 dark:fill-neutral-50"
                   />
                   <path
                     d="M11.9546 1.04575H16.1069V46.9543H11.9546V1.04575Z"
-                    fill="white"
+                    className="fill-neutral-800 dark:fill-neutral-50"
                   />
                   <rect
                     x="10.3453"
                     y="1.04575"
                     width="0.668407"
                     height="45.9085"
-                    fill="white"
+                    className="fill-neutral-800 dark:fill-neutral-50"
                   />
                   <rect
                     x="18.5039"
                     y="1.04574"
                     width="0.668407"
                     height="45.9085"
-                    fill="white"
+                    className="fill-neutral-800 dark:fill-neutral-50"
                   />
                   <path
                     fillRule="evenodd"
                     clipRule="evenodd"
                     d="M20.1082 41.9326V24.8102L37.6547 41.9326V46.9542H20.1081V41.9326L20.1082 41.9326Z"
-                    fill="white"
+                    className="fill-neutral-800 dark:fill-neutral-50"
                   />
                 </svg>
               </Link>
@@ -158,7 +156,7 @@ export default function Header() {
               >
                 <span className="sr-only">Close menu</span>
                 <svg
-                  className="stroke-white"
+                  className="stroke-black dark:stroke-white"
                   width={24}
                   height={24}
                   fill="none"
@@ -179,8 +177,8 @@ export default function Header() {
                 <div className="mt-14 flex flex-col space-y-5">
                   {navItems.map((item, index) => (
                     <Link
-                      key={item.name + index}
-                      className="text-lg font-normal hover:text-primary-green"
+                      key={`${item.name}${index}`}
+                      className="text-lg font-normal hover:text-green-500 dark:hover:text-primary-green"
                       href={item.path}
                       onClick={() => setIsCollapsed(true)}
                     >
@@ -193,7 +191,7 @@ export default function Header() {
           </div>
         </div>
       )}
-      <div className="hidden h-px w-full bg-zinc-700/40 lg:block" />
+      <div className="hidden h-px w-full bg-neutral-300 lg:block dark:bg-zinc-700/40" />
     </header>
   );
 }

@@ -1,6 +1,5 @@
 'use client';
 
-import { Metadata } from 'next';
 import { sendEmail } from '../actions/send-email';
 import { useFormState, useFormStatus } from 'react-dom';
 
@@ -18,7 +17,7 @@ function TextInput({
       type={type}
       name={name}
       id={id}
-      className="mt-3 block w-full rounded border border-zinc-500/50 bg-transparent px-2 py-3 text-zinc-200  focus:outline-none"
+      className="mt-3 block w-full rounded border border-neutral-400 bg-transparent px-2 py-3 font-normal focus:outline-none dark:border-secondary-gray"
       required
     />
   );
@@ -49,7 +48,7 @@ function SubmitButton() {
   const { pending } = useFormStatus();
   return (
     <button
-      className="w-full rounded-lg border border-zinc-300 bg-zinc-300 px-12 py-[10px] font-normal uppercase text-black hover:bg-transparent hover:text-zinc-300 disabled:bg-transparent disabled:text-zinc-300 disabled:opacity-60"
+      className="w-full rounded-lg border border-zinc-600 bg-secondary-gray px-12 py-[10px] font-normal uppercase text-white hover:bg-transparent hover:text-zinc-600 disabled:bg-transparent disabled:text-zinc-600 disabled:opacity-60 dark:border-zinc-300 dark:bg-zinc-300 dark:text-black dark:hover:text-zinc-300 dark:disabled:text-zinc-300"
       type="submit"
       disabled={pending}
     >
@@ -64,14 +63,14 @@ function SubmitButton() {
             height={20}
           >
             <circle
-              className="stroke-zinc-300 opacity-25"
+              className="stroke-zinc-600 opacity-25 dark:stroke-zinc-300"
               cx="12"
               cy="12"
               r="10"
               strokeWidth="4"
             ></circle>
             <path
-              className="fill-zinc-300 opacity-75"
+              className="fill-zinc-600 opacity-75 dark:fill-zinc-300"
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
             ></path>
           </svg>
@@ -95,14 +94,17 @@ export default function Contact() {
   return (
     <>
       <h1 className="text-4xl font-bold">
-        Let&apos;s Work <span className="text-primary-green">Together!</span>
+        Let&apos;s Work{' '}
+        <span className="text-green-500 dark:text-primary-green">
+          Together!
+        </span>
       </h1>
       <div className="my-12 flex flex-col border-zinc-700 text-lg ">
         <p className="mt-1 flex items-center gap-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
-            fill="currentColor"
+            className="fill-secondary-gray"
             width={20}
             height={20}
           >
@@ -115,7 +117,7 @@ export default function Contact() {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
-            fill="currentColor"
+            className="fill-secondary-gray"
             width={20}
             height={20}
           >
@@ -131,7 +133,7 @@ export default function Contact() {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
-            fill="currentColor"
+            className="fill-secondary-gray"
             width={20}
             height={20}
           >
@@ -165,7 +167,7 @@ export default function Contact() {
         <div className="mt-5">
           <InputLabel forId="message" label="Message" required />
           <textarea
-            className="mt-3 block w-full rounded border border-zinc-500/50 bg-transparent px-2 py-3 text-zinc-200  focus:outline-none"
+            className="mt-3 block w-full rounded border border-neutral-400 bg-transparent px-2 py-3 font-normal focus:outline-none dark:border-secondary-gray"
             rows={4}
             cols={60}
             id="message"
@@ -178,7 +180,7 @@ export default function Contact() {
         </div>
         <div className="mt-8 flex flex-wrap items-center">
           {state.sent && (
-            <p className="text-primary-green">
+            <p className="font-normal text-green-500 dark:text-primary-green">
               &#10003; Thanks for reaching out. I&apos;ll respond shortly.
             </p>
           )}
