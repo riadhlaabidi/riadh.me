@@ -20,10 +20,20 @@ const config: Config = {
       },
       colors: {
         'primary-green': 'rgb(40, 233, 140)',
-        'secondary-gray': 'rgb(153, 153, 153)',
+        'primary-gray': 'rgba(44, 44, 44)',
+        'secondary-gray': 'rgba(89, 89, 89)',
       },
       fontSize: {
         large: ['78px', '90px'],
+      },
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-5deg)' },
+          '50%': { transform: 'rotate(5deg)' },
+        },
+      },
+      animation: {
+        wiggle: 'wiggle 1s ease-in-out infinite',
       },
     },
   },

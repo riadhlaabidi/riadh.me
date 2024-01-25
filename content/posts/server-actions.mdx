@@ -1,0 +1,48 @@
+---
+title: 'Create a contact form using Next.js server actions'
+publishedAt: '2024-01-12'
+description: 'How to create a contact form using Next.js server actions to submit data.'
+tag: 'Next.js'
+readTime: 8
+---
+
+One powerful feature that often comes into play, in order to enhance user engagement, is the creation
+of a dynamic and efficient contact form.
+In this blog post, we will learn how to craft a robust contact form using Next.js new server actions.
+
+## What are server actions ?
+
+Server actions are asynchronous server-side functions that you can call from both server and client components.
+
+For server components, you can inline a server action inside the component using the `'use server'` directive at
+the top of the function definition:
+
+```tsx
+// Server Component
+export default function Page() {
+  // Server Action
+  async function send() {
+    'use server'
+
+    // ...
+  }
+
+  return (
+    // ...
+  )
+}
+```
+
+Alternatively, you can create a new file with `'use server'` directive at the top above any imports, in this way
+all exported functios from that file will be marked as server actions available for reuse:
+
+```tsx
+'use server'
+
+export async function send() {
+  // ...
+}
+```
+
+For client components, you can only import actions from a file that uses the directive,
+as inlining will not work in this case.
