@@ -1,5 +1,5 @@
 import hljs from 'highlight.js';
-import { MDXRemote } from 'next-mdx-remote/rsc';
+import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc';
 import React, { createElement } from 'react';
 import typescript from 'highlight.js/lib/languages/typescript';
 import bash from 'highlight.js/lib/languages/bash';
@@ -17,11 +17,11 @@ function slugify(str: string) {
 }
 
 function heading(level: number) {
-  return ({ children }: { children: string }) => {
-    const slug = slugify(children);
+  return ({ children }: { children?: React.ReactNode }) => {
+    const slug = slugify(children as string);
     const heading = createElement(
       `h${level}`,
-      { id: slugify(children) },
+      { id: slugify(children as string) },
       [
         createElement('a', {
           href: `#${slug}`,
@@ -40,15 +40,15 @@ function Code({
   className,
   ...props
 }: {
-  children: string;
-  className: string;
+  children?: React.ReactNode;
+  className?: string;
 }) {
   if (!className) {
     return <code {...props}>{children}</code>;
   }
 
   const language = className.replace(/language-/, '');
-  const html = hljs.highlight(children, { language }).value;
+  const html = hljs.highlight(children as string, { language }).value;
   // const html = Prism.highlight(children, Prism.languages[language], language);
 
   return <code dangerouslySetInnerHTML={{ __html: html }} {...props} />;
@@ -64,7 +64,9 @@ const components = {
   code: Code,
 };
 
-export function CustomMDX(props) {
+export function CustomMDX(
+  props: React.JSX.IntrinsicAttributes & MDXRemoteProps,
+) {
   return (
     <div className="prose prose-neutral mt-10 max-w-none font-normal md:prose-lg dark:prose-invert prose-headings:font-medium">
       <MDXRemote

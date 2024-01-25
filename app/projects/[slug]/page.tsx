@@ -6,7 +6,6 @@ import { foramtDate } from '@/app/util/date';
 import type { Metadata } from 'next';
 import { Project, getProjects } from '@/app/db/mdx';
 import { CustomMDX } from '@/app/components/mdx';
-import { GithubIcon } from '@/app/components/icons';
 
 export async function generateMetadata({
   params,
@@ -25,6 +24,12 @@ export async function generateMetadata({
     openGraph: {
       title: `${project.metadata.title} | Riadh Laabidi`,
       description: project.metadata.description,
+      images: [
+        {
+          url: `https://riadh.me/og?title=${project.metadata.title}`,
+          alt: `${project.metadata.title} project image`,
+        },
+      ],
       type: 'article',
       publishedTime: project.metadata.lastModified,
       url: `https://riadh.me/project/${project.slug}`,
@@ -33,6 +38,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: `${project.metadata.title} | Riadh Laabidi`,
       description: project.metadata.description,
+      images: [`https://riadh.me/og?title=${project.metadata.title}`],
     },
   };
 }
