@@ -67,9 +67,9 @@ function readMdxFiles<T>(folder: string): T[] {
 }
 
 export function getProjects(): Project[] {
-  return readMdxFiles<Project>('content/projects');
+  return readMdxFiles<Project>(path.join(process.cwd(), 'content/projects'));
 }
 
 export function getBlogPosts(): BlogPost[] {
-  return readMdxFiles<BlogPost>('content/posts');
+  return readMdxFiles<BlogPost>(path.join(process.cwd(), 'content/posts'));
 }
