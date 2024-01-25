@@ -1,8 +1,8 @@
 import Card from '../components/Card';
 import Divider from '../components/Divider';
 import Link from 'next/link';
-import { allProjects } from 'contentlayer/generated';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+import { Project, getProjects } from '../db/mdx';
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 };
 
 export default function Projects() {
-  const sortedProjects = allProjects.sort((a, b) => {
-    if (new Date(a.lastModified) > new Date(b.lastModified)) {
+  const sortedProjects: Project[] = getProjects().sort((a, b) => {
+    if (new Date(a.metadata.lastModified) > new Date(b.metadata.lastModified)) {
       return -1;
     }
     return 1;
@@ -24,7 +24,7 @@ export default function Projects() {
   return (
     <section>
       <h1 className="text-4xl font-bold">Projects</h1>
-      <p className="mb-16 mt-4 text-zinc-400">
+      <p className="mb-16 mt-4 text-secondary-gray dark:text-neutral-400">
         Some of the projects I&apos;m working on.
       </p>
       <Divider />
@@ -32,11 +32,11 @@ export default function Projects() {
         {sortedProjects.map(project => (
           <Card key={project.slug}>
             <Link href={`/projects/${project.slug}`}>
-              <h2 className="text-2xl font-bold text-zinc-200 group-hover:text-white">
-                {project.name}
+              <h2 className="line-clamp-2 text-2xl font-bold dark:group-hover:text-white">
+                {project.metadata.title}
               </h2>
-              <p className="mt-7 text-zinc-400 group-hover:text-zinc-100">
-                {project.description}
+              <p className="mt-7 line-clamp-2 text-secondary-gray dark:text-neutral-400">
+                {project.metadata.description}
               </p>
             </Link>
           </Card>

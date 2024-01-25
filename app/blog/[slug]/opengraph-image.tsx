@@ -1,4 +1,4 @@
-import { Project, getProjects } from '@/app/db/mdx';
+import { BlogPost, getBlogPosts } from '@/app/db/mdx';
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
@@ -8,7 +8,7 @@ const size = {
   height: 630,
 };
 
-export function generateImageMetadata({
+export async function generateImageMetadata({
   params,
 }: {
   params: { slug: string };
@@ -18,16 +18,20 @@ export function generateImageMetadata({
     size: size,
     id: 'og-image',
   };
-  const project = getProjects().find((p: Project) => p.slug === params.slug);
-  return project
-    ? [{ ...metadata, alt: `${project.metadata.title} project thumbnail` }]
-    : [metadata];
+
+  const post = getBlogPosts().find((p: BlogPost) => p.slug === params.slug);
+
+  if (!post) {
+    return [metadata];
+  }
+
+  return [{ ...metadata, alt: `${post.metadata.title} blog post thumbnail` }];
 }
 
 export default async function Image({ params }: { params: { slug: string } }) {
-  const project = getProjects().find((p: Project) => p.slug === params.slug);
+  const post = getBlogPosts().find((p: BlogPost) => p.slug === params.slug);
 
-  if (!project) {
+  if (!post) {
     return null;
   }
 
@@ -56,7 +60,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
             fontSize: 56,
           }}
         >
-          <span>{project.metadata.title}</span>
+          <span>{post.metadata.title}</span>
         </h2>
       </div>
     ),
