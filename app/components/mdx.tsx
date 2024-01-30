@@ -54,6 +54,21 @@ function Code({
   return <code dangerouslySetInnerHTML={{ __html: html }} {...props} />;
 }
 
+function CustomLink({
+  href,
+  children,
+  ...props
+}: {
+  href?: string;
+  children?: React.ReactNode;
+}) {
+  return (
+    <a href={href} target="_blank" rel="noreferer noopener nofollow" {...props}>
+      {children}
+    </a>
+  );
+}
+
 const components = {
   h1: heading(1),
   h2: heading(2),
@@ -62,6 +77,7 @@ const components = {
   h5: heading(5),
   h6: heading(6),
   code: Code,
+  a: CustomLink,
 };
 
 export function CustomMDX(
