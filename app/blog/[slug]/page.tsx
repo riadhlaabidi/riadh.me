@@ -56,7 +56,7 @@ export default async function BlogPostPage({
   }
 
   return (
-    <div className="mx-auto w-full md:w-3/5">
+    <div className="mx-auto mb-20 w-full md:w-3/5 lg:mb-32">
       <Link
         href="/blog"
         className="group flex items-center gap-1 text-secondary-gray hover:text-green-500 dark:text-neutral-400 dark:hover:text-primary-green"
@@ -77,18 +77,17 @@ export default async function BlogPostPage({
         </svg>
         All posts
       </Link>
-      <article className="mb-20 mt-12">
+      <article className="mt-12">
         <h1 className="text-3xl font-semibold lg:text-4xl">
           {post.metadata.title}
         </h1>
-        <div className="mt-6 text-sm text-secondary-gray md:text-base dark:text-neutral-400">
+        <div className="mb-14 mt-6 text-sm text-secondary-gray md:text-base dark:text-neutral-400">
           <time className="" dateTime={post.metadata.publishedAt}>
             {foramtDate(post.metadata.publishedAt)}
           </time>
           <span className="mx-2 ">•</span>
           <span>{post.metadata.readTime} min read</span>
         </div>
-
         <CustomMDX source={post.content} />
       </article>
     </div>

@@ -31,17 +31,3 @@ html {
   @apply whitespace-nowrap rounded-md bg-neutral-500/20 font-medium before:content-none after:content-none;
   padding: 0.15em;
 }
-
-.prose pre {
-  @apply rounded-md bg-neutral-500/20 dark:bg-[--tw-prose-pre-bg];
-}
-
-.prose pre > code {
-  @apply text-[--tw-prose-body];
-}
-
-.hljs-regexp,
-.hljs-string,
-.hljs-meta .hljs-string {
-  color: #2568b5 !important;
-}

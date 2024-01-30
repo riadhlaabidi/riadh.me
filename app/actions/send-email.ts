@@ -46,8 +46,8 @@ export async function sendEmail(prevState: any, formData: FormData) {
 
   try {
     await transport.sendMail({
-      to: 'riadh.by.laabidi@gmail.com',
-      from: 'contact@riadh.me',
+      to: process.env.NEXT_CONTACT_TO,
+      from: process.env.NEXT_CONTACT_FROM,
       subject: 'New contact request from your portfolio!',
       html: `<!DOCTYPE html>
       <html lang="en">
