@@ -9,5 +9,3 @@ package-lock.json
 *.png
 *.pdf
 *.txt
-*.mdx
-prism.js

@@ -1,7 +1,7 @@
 import './globals.css';
-import 'highlight.js/styles/github.css';
+import 'highlight.js/styles/github-dark.css';
 import type { Metadata } from 'next';
-import Footer from './components/Footer';
+import Footer from './components/footer';
 import Header from './components/header';
 import { GoogleTagManager } from '@next/third-parties/google';
 import Analytics from './components/Analytics';
