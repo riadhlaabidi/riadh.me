@@ -34,7 +34,7 @@ export default function Home() {
       <div className="mt-9 flex flex-col gap-3 lg:flex-row">
         <a
           id="download-resume"
-          href="/files/resume-riadh-laabidi.pdf"
+          href="/files/resume-riadh-laabidi-swe.pdf"
           className="rounded-full border border-zinc-600 bg-zinc-600 px-12 py-[10px] font-normal uppercase text-white hover:bg-transparent hover:text-zinc-600  dark:border-zinc-300 dark:bg-zinc-300 dark:text-black dark:hover:text-zinc-300"
           download
         >
