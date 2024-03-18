@@ -127,7 +127,7 @@ export default function Contact() {
               clipRule="evenodd"
             />
           </svg>
-          <a href="tel:+21655305173">+216 55 305 173</a>
+          <a href="tel:+21650811721">+216 50 811 721</a>
         </p>
         <p className="mt-1 flex items-center gap-3">
           <svg
