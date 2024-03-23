@@ -1,6 +1,31 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { GithubIcon, LinkedinIcon, TwitterIcon } from './components/icons';
+import {
+  GithubIcon,
+  LeetcodeIcon,
+  LinkedinIcon,
+  TwitterIcon,
+} from './components/icons';
+import { ReactElement } from 'react';
+
+function SocialLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: ReactElement;
+}) {
+  return (
+    <a
+      className="group flex h-12 w-12 items-center justify-center rounded-full border border-secondary-gray hover:border-green-500"
+      href={href}
+      target="_blank"
+      rel="noreferer noopener nofollow"
+    >
+      {children}
+    </a>
+  );
+}
 
 export default function Home() {
   return (
@@ -48,27 +73,18 @@ export default function Home() {
         </Link>
       </div>
       <div className="mt-10 flex gap-4">
-        <a
-          href="https://github.com/riadhlaabidi"
-          target="_blank"
-          rel="noreferer noopener nofollow"
-        >
+        <SocialLink href="https://github.com/riadhlaabidi">
           <GithubIcon />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/riadhlaabidi/"
-          target="_blank"
-          rel="noreferer noopener nofollow"
-        >
+        </SocialLink>
+        <SocialLink href="https://www.linkedin.com/in/riadhlaabidi/">
           <LinkedinIcon />
-        </a>
-        <a
-          href="https://twitter.com/riadh__laabidi"
-          target="_blank"
-          rel="noreferer noopener nofollow"
-        >
+        </SocialLink>
+        <SocialLink href="https://twitter.com/riadh__laabidi">
           <TwitterIcon />
-        </a>
+        </SocialLink>
+        <SocialLink href="https://leetcode.com/riadhlaabidi">
+          <LeetcodeIcon />
+        </SocialLink>
       </div>
     </section>
   );
