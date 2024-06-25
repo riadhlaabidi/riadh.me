@@ -1,0 +1,12 @@
+node_modules
+.next
+.husky
+.git 
+package-lock.json
+.gitignore
+.prettierignore
+*.ttf
+*.png
+*.svg
+*.pdf
+*.txt
