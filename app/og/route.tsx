@@ -7,12 +7,6 @@ export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl;
   const title = searchParams.get('title');
 
-  const font = fetch(
-    new URL('../../public/fonts/Raleway-Regular.ttf', import.meta.url),
-  ).then(res => res.arrayBuffer());
-
-  const fontData = await font;
-
   return new ImageResponse(
     (
       <div
@@ -24,14 +18,14 @@ export async function GET(req: NextRequest) {
           height: '100%',
           alignItems: 'flex-start',
           justifyContent: 'center',
-          padding: 140,
+          padding: 150,
         }}
       >
         <h2
           style={{
-            fontFamily: 'Geist',
-            color: '#fff',
-            fontSize: 56,
+            color: '#ff9e64',
+            fontSize: 64,
+            fontWeight: 'bold',
           }}
         >
           <span>{title}</span>
@@ -41,13 +35,6 @@ export async function GET(req: NextRequest) {
     {
       width: 1920,
       height: 1080,
-      fonts: [
-        {
-          name: 'Geist',
-          data: fontData,
-          style: 'normal',
-        },
-      ],
     },
   );
 }
